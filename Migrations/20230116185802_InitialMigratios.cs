@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MergeMe.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigratios : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,40 +52,40 @@ namespace MergeMe.Migrations
                 name: "Companies",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CompanyName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     BussinessNumber = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Companies", x => x.id);
+                    table.PrimaryKey("PK_Companies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "matches",
+                name: "match",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MatchDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_matches", x => x.id);
+                    table.PrimaryKey("PK_match", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Stacks",
+                name: "Stack",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StackName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stacks", x => x.id);
+                    table.PrimaryKey("PK_Stack", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,101 +195,100 @@ namespace MergeMe.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Developers",
+                name: "Developer",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Stacksid = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Developers", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Developers_Stacks_Stacksid",
-                        column: x => x.Stacksid,
-                        principalTable: "Stacks",
-                        principalColumn: "id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Recruiters",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    StacksId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Developer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Developer_Stack_StacksId",
+                        column: x => x.StacksId,
+                        principalTable: "Stack",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Recruiter",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Stacksid = table.Column<int>(type: "int", nullable: true)
+                    StacksId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Recruiters", x => x.id);
+                    table.PrimaryKey("PK_Recruiter", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Recruiters_Stacks_Stacksid",
-                        column: x => x.Stacksid,
-                        principalTable: "Stacks",
-                        principalColumn: "id");
+                        name: "FK_Recruiter_Stack_StacksId",
+                        column: x => x.StacksId,
+                        principalTable: "Stack",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "DeveloperStacks",
+                name: "DeveloperStack",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    developersid = table.Column<int>(type: "int", nullable: false),
-                    stacksid = table.Column<int>(type: "int", nullable: false)
+                    developersId = table.Column<int>(type: "int", nullable: false),
+                    stacksId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DeveloperStacks", x => x.id);
+                    table.PrimaryKey("PK_DeveloperStack", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DeveloperStacks_Developers_developersid",
-                        column: x => x.developersid,
-                        principalTable: "Developers",
-                        principalColumn: "id",
+                        name: "FK_DeveloperStack_Developer_developersId",
+                        column: x => x.developersId,
+                        principalTable: "Developer",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DeveloperStacks_Stacks_stacksid",
-                        column: x => x.stacksid,
-                        principalTable: "Stacks",
-                        principalColumn: "id",
+                        name: "FK_DeveloperStack_Stack_stacksId",
+                        column: x => x.stacksId,
+                        principalTable: "Stack",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RecruiterStacks",
+                name: "RecruiterStack",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    recruitersid = table.Column<int>(type: "int", nullable: false),
-                    stacksid = table.Column<int>(type: "int", nullable: false)
+                    recruitersId = table.Column<int>(type: "int", nullable: false),
+                    stacksId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecruiterStacks", x => x.id);
+                    table.PrimaryKey("PK_RecruiterStack", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RecruiterStacks_Recruiters_recruitersid",
-                        column: x => x.recruitersid,
-                        principalTable: "Recruiters",
-                        principalColumn: "id",
+                        name: "FK_RecruiterStack_Recruiter_recruitersId",
+                        column: x => x.recruitersId,
+                        principalTable: "Recruiter",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RecruiterStacks_Stacks_stacksid",
-                        column: x => x.stacksid,
-                        principalTable: "Stacks",
-                        principalColumn: "id",
+                        name: "FK_RecruiterStack_Stack_stacksId",
+                        column: x => x.stacksId,
+                        principalTable: "Stack",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -333,34 +332,34 @@ namespace MergeMe.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Developers_Stacksid",
-                table: "Developers",
-                column: "Stacksid");
+                name: "IX_Developer_StacksId",
+                table: "Developer",
+                column: "StacksId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeveloperStacks_developersid",
-                table: "DeveloperStacks",
-                column: "developersid");
+                name: "IX_DeveloperStack_developersId",
+                table: "DeveloperStack",
+                column: "developersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeveloperStacks_stacksid",
-                table: "DeveloperStacks",
-                column: "stacksid");
+                name: "IX_DeveloperStack_stacksId",
+                table: "DeveloperStack",
+                column: "stacksId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recruiters_Stacksid",
-                table: "Recruiters",
-                column: "Stacksid");
+                name: "IX_Recruiter_StacksId",
+                table: "Recruiter",
+                column: "StacksId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecruiterStacks_recruitersid",
-                table: "RecruiterStacks",
-                column: "recruitersid");
+                name: "IX_RecruiterStack_recruitersId",
+                table: "RecruiterStack",
+                column: "recruitersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecruiterStacks_stacksid",
-                table: "RecruiterStacks",
-                column: "stacksid");
+                name: "IX_RecruiterStack_stacksId",
+                table: "RecruiterStack",
+                column: "stacksId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -384,13 +383,13 @@ namespace MergeMe.Migrations
                 name: "Companies");
 
             migrationBuilder.DropTable(
-                name: "DeveloperStacks");
+                name: "DeveloperStack");
 
             migrationBuilder.DropTable(
-                name: "matches");
+                name: "match");
 
             migrationBuilder.DropTable(
-                name: "RecruiterStacks");
+                name: "RecruiterStack");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -399,13 +398,13 @@ namespace MergeMe.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Developers");
+                name: "Developer");
 
             migrationBuilder.DropTable(
-                name: "Recruiters");
+                name: "Recruiter");
 
             migrationBuilder.DropTable(
-                name: "Stacks");
+                name: "Stack");
         }
     }
 }

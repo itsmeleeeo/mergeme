@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MergeMe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230113070948_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230116185802_InitialMigratios")]
+    partial class InitialMigratios
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,11 +26,11 @@ namespace MergeMe.Migrations
 
             modelBuilder.Entity("MergeMe.Model.Company", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("BussinessNumber")
                         .HasColumnType("int");
@@ -40,75 +40,18 @@ namespace MergeMe.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("MergeMe.Model.Developer", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int?>("Stacksid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("password")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Stacksid");
-
-                    b.ToTable("Developers");
-                });
-
-            modelBuilder.Entity("MergeMe.Model.Match", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<DateTime>("MatchDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("id");
-
-                    b.ToTable("matches");
-                });
-
-            modelBuilder.Entity("MergeMe.Model.Recruiter", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -128,88 +71,140 @@ namespace MergeMe.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Stacksid")
+                    b.Property<int?>("StacksId")
                         .HasColumnType("int");
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("password")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("Stacksid");
+                    b.HasIndex("StacksId");
 
-                    b.ToTable("Recruiters");
+                    b.ToTable("Developer");
+                });
+
+            modelBuilder.Entity("MergeMe.Model.Match", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("MatchDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("match");
+                });
+
+            modelBuilder.Entity("MergeMe.Model.Recruiter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("StacksId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StacksId");
+
+                    b.ToTable("Recruiter");
                 });
 
             modelBuilder.Entity("MergeMe.Model.StackFromDeveloper", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("developersid")
+                    b.Property<int>("developersId")
                         .HasColumnType("int");
 
-                    b.Property<int>("stacksid")
+                    b.Property<int>("stacksId")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("developersid");
+                    b.HasIndex("developersId");
 
-                    b.HasIndex("stacksid");
+                    b.HasIndex("stacksId");
 
-                    b.ToTable("DeveloperStacks");
+                    b.ToTable("DeveloperStack");
                 });
 
             modelBuilder.Entity("MergeMe.Model.StackFromRecruiter", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("recruitersid")
+                    b.Property<int>("recruitersId")
                         .HasColumnType("int");
 
-                    b.Property<int>("stacksid")
+                    b.Property<int>("stacksId")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("recruitersid");
+                    b.HasIndex("recruitersId");
 
-                    b.HasIndex("stacksid");
+                    b.HasIndex("stacksId");
 
-                    b.ToTable("RecruiterStacks");
+                    b.ToTable("RecruiterStack");
                 });
 
             modelBuilder.Entity("MergeMe.Model.Stacks", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("StackName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.ToTable("Stacks");
+                    b.ToTable("Stack");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -437,27 +432,27 @@ namespace MergeMe.Migrations
                 {
                     b.HasOne("MergeMe.Model.Stacks", null)
                         .WithMany("developers")
-                        .HasForeignKey("Stacksid");
+                        .HasForeignKey("StacksId");
                 });
 
             modelBuilder.Entity("MergeMe.Model.Recruiter", b =>
                 {
                     b.HasOne("MergeMe.Model.Stacks", null)
                         .WithMany("recruiters")
-                        .HasForeignKey("Stacksid");
+                        .HasForeignKey("StacksId");
                 });
 
             modelBuilder.Entity("MergeMe.Model.StackFromDeveloper", b =>
                 {
                     b.HasOne("MergeMe.Model.Developer", "developers")
                         .WithMany()
-                        .HasForeignKey("developersid")
+                        .HasForeignKey("developersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MergeMe.Model.Stacks", "stacks")
                         .WithMany()
-                        .HasForeignKey("stacksid")
+                        .HasForeignKey("stacksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -470,13 +465,13 @@ namespace MergeMe.Migrations
                 {
                     b.HasOne("MergeMe.Model.Recruiter", "recruiters")
                         .WithMany()
-                        .HasForeignKey("recruitersid")
+                        .HasForeignKey("recruitersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MergeMe.Model.Stacks", "stacks")
                         .WithMany()
-                        .HasForeignKey("stacksid")
+                        .HasForeignKey("stacksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

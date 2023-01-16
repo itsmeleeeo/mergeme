@@ -1,3 +1,4 @@
+using MergeMe.Controllers;
 using MergeMe.Model;
 using Microsoft.AspNetCore.Identity;
 
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddSqlServer<ApplicationDbContext>(builder.Configuration["ConnectionString:MergeMe"]);
+builder.Services.AddSqlServer<ApplicationDbContext>(builder.Configuration["ConnectionStrings:MergeMe"]);
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
     options.Password.RequireUppercase = true;
@@ -16,14 +17,16 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 }).AddEntityFrameworkStores<ApplicationDbContext>();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+//Post Methods
+app.MapMethods(DeveloperPost.Template, DeveloperPost.Methods, DeveloperPost.Handler);
+app.MapMethods(RecruiterPost.Template, RecruiterPost.Method, RecruiterPost.Handler);
+
 app.UseStaticFiles();
 app.UseRouting();
 

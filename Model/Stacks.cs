@@ -3,7 +3,7 @@ namespace MergeMe.Model
 {
     public class Stacks
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string StackName { get; set; }
 
         public List<Developer> developers { get; set; }

@@ -2,7 +2,7 @@
 {
     public class StackFromRecruiter
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
         public Recruiter recruiters { get; set; }
         public Stacks stacks { get; set; }
