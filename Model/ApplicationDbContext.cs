@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Flunt.Notifications;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,17 +20,16 @@ namespace MergeMe.Model
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Ignore<Notification>();
             builder.Entity<Developer>().Property(p => p.FirstName).IsRequired();
             builder.Entity<Developer>().Property(p => p.LastName).IsRequired();
             builder.Entity<Developer>().Property(p => p.Email).IsRequired();
-            builder.Entity<Developer>().Property(p => p.password).IsRequired();
-            builder.Entity<Developer>().Property(p => p.BirthDate).IsRequired();
+            builder.Entity<Developer>().Property(p => p.Password).IsRequired();
 
             builder.Entity<Recruiter>().Property(p => p.FirstName).IsRequired();
             builder.Entity<Recruiter>().Property(p => p.LastName).IsRequired();
             builder.Entity<Recruiter>().Property(p => p.Email).IsRequired();
-            builder.Entity<Recruiter>().Property(p => p.password).IsRequired();
-            builder.Entity<Recruiter>().Property(p => p.BirthDate).IsRequired();
+            builder.Entity<Recruiter>().Property(p => p.Password).IsRequired();
 
         }
 
