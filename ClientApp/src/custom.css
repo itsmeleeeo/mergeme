@@ -1,18 +1,184 @@
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;400;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+:root {
+    --confirmBtn: #0cce6b;
+    --cancelBtn: #ef2d56;
+    --bgColor: #f2f2f2;
+    --btnLogin: #3d90fc;
+    --btnSignUp: #3d90fc;
 }
 
-code {
-  color: #E01A76;
+h1, h2, h3, h4, h5, h6, p, span {
+    font-family: 'Inconsolata'
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.dsp-flex {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.dsp-between {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.dsp-around {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mr-5 {
+    margin-right: 5px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.mr-15 {
+    margin-right: 15px;
+}
+
+.mr-30 {
+    margin-right: 30px;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-5 {
+    margin-bottom: 5px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.ml-15 {
+    margin-left: 15px;
+}
+
+.ml-30 {
+    margin-left: 30px;
+}
+
+.pd-5 {
+    padding: 5px;
+}
+
+.pd-10 {
+    padding: 10px;
+}
+
+.pd-15 {
+    padding: 15px;
+}
+
+.pt-5 {
+    padding-top: 5px;
+}
+
+.pt-10 {
+    padding-top: 10px;
+}
+
+.pt-15 {
+    padding-top: 15px;
+}
+
+.pr-5 {
+    padding-right: 5px;
+}
+
+.pr-10 {
+    padding-right: 10px;
+}
+
+.pr-15 {
+    padding-right: 15px;
+}
+
+.pb-5 {
+    padding-bottom: 5px;
+}
+
+.pb-10 {
+    padding-bottom: 10px;
+}
+
+.pb-15 {
+    padding-bottom: 15px;
+}
+
+.pl-5 {
+    padding-left: 5px;
+}
+
+.pl-10 {
+    padding-left: 10px;
+}
+
+.pl-15 {
+    padding-left: 15px;
+}
+
+body {
+    background-color: var(--bgColor);
+}
+
+/*Navbar*/
+
+.btnLogin {
+    background-color: var(--btnLogin);
+    height: auto;
+    width: 150px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Inconsolata';
+    font-weight: 400;
+    color: var(--bgColor);
+    font-size: 18px;
 }
