@@ -9,13 +9,24 @@
 :root {
     --confirmBtn: #0cce6b;
     --cancelBtn: #ef2d56;
-    --bgColor: #f2f2f2;
-    --btnLogin: #3d90fc;
-    --btnSignUp: #3d90fc;
+    --bgColor: #F8FAFC;
+    --btnLogin: #010C80;
+    --btnSignUp: #010C80;
+}
+
+html {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6, p, span {
     font-family: 'Inconsolata'
+}
+
+.container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .dsp-flex {
@@ -34,6 +45,12 @@ h1, h2, h3, h4, h5, h6, p, span {
     display: flex;
     align-content: center;
     justify-content: space-around;
+}
+
+.dsp-grid-center {
+    display: grid;
+    align-content: center;
+    justify-content:center;
 }
 
 
@@ -181,4 +198,129 @@ body {
     font-weight: 400;
     color: var(--bgColor);
     font-size: 18px;
+    transition: ease-in-out 0.4s;
+}
+
+.btnLogin:hover {
+    background-color: var(--btnLogin);
+    height: auto;
+    width: 150px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Inconsolata';
+    font-weight: 400;
+    color: var(--bgColor);
+    font-size: 18px;
+    box-shadow: 5px 5px 5px 5px #b2b2b2;
+    transition: ease-in-out 0.4s;
+}
+
+.btnLogin:visited {
+    background-color: var(--btnLogin);
+    height: auto;
+    width: 150px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Inconsolata';
+    font-weight: 400;
+    color: var(--bgColor);
+    font-size: 18px;
+    box-shadow: 5px 5px 5px 5px #b2b2b2;
+    transition: ease-in-out 0.4s;
+}
+
+.imgLogo {
+    height: auto;
+    width: 200px;
+}
+
+.createAccountTxt {
+    color: var(--btnLogin);
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*section*/
+.sectionHeight {
+    height: 500px;
+}
+
+.registerDeveloper {
+    border: 2px solid var(--btnLogin);
+    background-color: var(--btnLogin);
+    padding: 15px;
+    margin: 15px;
+    font-family: 'Inconsolata';
+    color: var(--bgColor);
+    text-align: center;
+    border-radius: 5px;
+    transition: ease-in-out 0.4s;
+}
+
+.registerDeveloper:hover {
+    border: 2px solid var(--btnLogin);
+    background-color: var(--bgColor);
+    padding: 15px;
+    margin: 15px;
+    font-family: 'Inconsolata';
+    color: var(--btnLogin);
+    text-align: center;
+    border-radius: 5px;
+    transition: ease-in-out 0.4s;
+}
+
+.registerRecruiter {
+    border: 2px solid var(--btnLogin);
+    background-color: var(--bgColor);
+    padding: 15px;
+    margin: 15px;
+    font-family: 'Inconsolata';
+    color: var(--btnLogin);
+    text-align: center;
+    border-radius: 5px;
+    transition: ease-in-out 0.4s;
+}
+
+.registerRecruiter:hover {
+    border: 2px solid var(--btnLogin);
+    background-color: var(--btnLogin);
+    padding: 15px;
+    margin: 15px;
+    font-family: 'Inconsolata';
+    color: var(--bgColor);
+    text-align: center;
+    border-radius: 5px;
+    transition: ease-in-out 0.4s;
+}
+
+.testimonial {
+    background-color: var(--btnLogin);
+    border-radius:5px;
+}
+
+.testimonialTxt {
+    color: var(--bgColor);
+    font-size: 3rem;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.cardTestimonial {
+    border: 2px solid var(--bgColor);
+    height: auto;
+    width: auto;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.headerCardTestimonial {
+    color: var(--bgColor);
+    font-size: 22px;
+    padding: 0px 10px 0px 10px;
+}
+/*Footer*/
+.footer {
+    color: var(--btnLogin);
 }

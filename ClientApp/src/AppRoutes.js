@@ -8,7 +8,7 @@ const AppRoutes = [
     element: <Home />
   },
   {
-    path: '/developers',
+    path: '/developer',
     element: <RegisterDeveloper />
   },
   {
