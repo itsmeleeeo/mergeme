@@ -60,8 +60,10 @@ export class Home extends Component {
                     You can look for developer position as you can look for developer being a head hunter or recruiter.
                 </p>
                 <div className="dsp-flex mt-15">
-                    <RegisterButton tag={Link} to="/developer" register="I am Developer!" registerstyle="registerDeveloper" />
-                    <RegisterButton register="I am Recruiter!" registerstyle="registerRecruiter"/>
+                    <Link to="/developer">
+                        <RegisterButton register="I am Developer!" registerstyle="registerDeveloper" />
+                    </Link>
+                    <RegisterButton register="I am Recruiter!" registerstyle="registerRecruiter" />
                 </div>
             </section>
             <section className="testimonial">

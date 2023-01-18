@@ -20,13 +20,8 @@ html {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6, p, span {
+h1, h2, h3, h4, h5, h6, p, span, label {
     font-family: 'Inconsolata'
-}
-
-.container-fluid {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
 }
 
 .dsp-flex {
@@ -319,6 +314,37 @@ body {
     color: var(--bgColor);
     font-size: 22px;
     padding: 0px 10px 0px 10px;
+}
+
+/*register form*/
+.FormSignUp {
+    border: 2px solid var(--btnLogin);
+    height:auto;
+    width: 100%;
+    border-radius: 5px;
+    padding:15px;
+}
+
+.devSubmitForm {
+    background-color: var(--confirmBtn);
+    color:var(--bgColor);
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 150px;
+    font-family: Inconsolata;
+    font-size: 22px;
+}
+
+.clearForm {
+    background-color: var(--cancelBtn);
+    color: var(--bgColor);
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 150px;
+    font-family: Inconsolata;
+    font-size: 22px;
 }
 /*Footer*/
 .footer {
