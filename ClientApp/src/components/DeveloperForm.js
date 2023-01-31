@@ -7,8 +7,7 @@ function DeveloperForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         const user = {
             firstName,
             lastName,
