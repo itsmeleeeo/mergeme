@@ -23,8 +23,8 @@ namespace MergeMe.Controllers
 
             var recruiterClaims = new List<Claim>
             {
-                new Claim("FirstName", recruiterRequest.firstName),
-                new Claim("LastName", recruiterRequest.lastName)
+                new Claim("CompanyName", recruiterRequest.companyName),
+                new Claim("BusinessName", recruiterRequest.businessName)
             };
 
             var claimResult = userManager.AddClaimsAsync(recruiter, recruiterClaims).Result;

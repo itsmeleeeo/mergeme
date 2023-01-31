@@ -9,12 +9,18 @@
 :root {
     --confirmBtn: #0cce6b;
     --cancelBtn: #ef2d56;
-    --bgColor: #f2f2f2;
-    --btnLogin: #3d90fc;
-    --btnSignUp: #3d90fc;
+    --bgColor: #F8FAFC;
+    --btnLogin: #0569ff;
+    --btnSignUp: #0569ff;
 }
 
-h1, h2, h3, h4, h5, h6, p, span {
+html {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, label {
     font-family: 'Inconsolata'
 }
 
@@ -22,6 +28,12 @@ h1, h2, h3, h4, h5, h6, p, span {
     display: flex;
     align-content: center;
     justify-content: center;
+}
+
+.dsp-flex-start {
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
 }
 
 .dsp-between {
@@ -34,6 +46,11 @@ h1, h2, h3, h4, h5, h6, p, span {
     display: flex;
     align-content: center;
     justify-content: space-around;
+}
+
+.dsp-grid-center {
+    display: grid;
+    align-content: center;
 }
 
 
@@ -51,6 +68,10 @@ h1, h2, h3, h4, h5, h6, p, span {
 
 .mt-30 {
     margin-top: 30px;
+}
+
+.mt-80 {
+    margin-top: 80px;
 }
 
 .mr-5 {
@@ -87,6 +108,10 @@ h1, h2, h3, h4, h5, h6, p, span {
 
 .mb-30 {
     margin-bottom: 30px;
+}
+
+.mb-80 {
+    margin-bottom: 80px;
 }
 
 .ml-5 {
@@ -165,10 +190,6 @@ h1, h2, h3, h4, h5, h6, p, span {
     padding-left: 15px;
 }
 
-body {
-    background-color: var(--bgColor);
-}
-
 /*Navbar*/
 
 .btnLogin {
@@ -181,4 +202,178 @@ body {
     font-weight: 400;
     color: var(--bgColor);
     font-size: 18px;
+    transition: ease-in-out 0.4s;
+}
+
+.btnLogin:hover {
+    background-color: var(--btnLogin);
+    height: auto;
+    width: 150px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Inconsolata';
+    font-weight: 400;
+    color: var(--bgColor);
+    font-size: 18px;
+    box-shadow: 5px 5px 5px 5px #b2b2b2;
+    transition: ease-in-out 0.4s;
+}
+
+.btnLogin:visited {
+    background-color: var(--btnLogin);
+    height: auto;
+    width: 150px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Inconsolata';
+    font-weight: 400;
+    color: var(--bgColor);
+    font-size: 18px;
+    box-shadow: 5px 5px 5px 5px #b2b2b2;
+    transition: ease-in-out 0.4s;
+}
+
+.imgLogo {
+    height: auto;
+    width: 200px;
+}
+
+.createAccountTxt {
+    color: #000000;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.getMerged {
+    color: var(--btnLogin);
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.hookText {
+    color: #b2b2b2;
+}
+/*section*/
+
+.registerDeveloper {
+    border: 2px solid var(--btnLogin);
+    background-color: var(--btnLogin);
+    font-family: 'Inconsolata';
+    color: var(--bgColor);
+    text-align: center;
+    border-radius: 5px;
+    transition: ease-in-out 0.4s;
+    width: 120px;
+    height: 40px;
+}
+
+.registerDeveloper:hover {
+    border: 2px solid var(--btnLogin);
+    background-color: var(--bgColor);
+    font-family: 'Inconsolata';
+    color: var(--btnLogin);
+    text-align: center;
+    border-radius: 5px;
+    transition: ease-in-out 0.4s;
+    width: 120px;
+    height: 40px;
+}
+
+.registerRecruiter {
+    border: 2px solid var(--btnLogin);
+    background-color: var(--bgColor);
+    padding: 15px;
+    margin: 15px;
+    font-family: 'Inconsolata';
+    color: var(--btnLogin);
+    text-align: center;
+    border-radius: 5px;
+    transition: ease-in-out 0.4s;
+}
+
+.registerRecruiter:hover {
+    border: 2px solid var(--btnLogin);
+    background-color: var(--btnLogin);
+    padding: 15px;
+    margin: 15px;
+    font-family: 'Inconsolata';
+    color: var(--bgColor);
+    text-align: center;
+    border-radius: 5px;
+    transition: ease-in-out 0.4s;
+}
+
+.testimonialTab {
+    color: #000000;
+    font-size: 1rem;
+    text-align: center;
+    padding-top: 15px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.cardTestimonial {
+    border: 2px solid #b0b0b0;
+    height: auto;
+    width: auto;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.headerCardTestimonial {
+    color: #000f;
+    font-size: 16px;
+    padding: 0px 10px 0px 10px;
+}
+
+.cardImage {
+    margin: 10px;
+    border-radius: 50%;
+    height: auto;
+}
+/*register form*/
+.FormSignUp {
+    border: 2px solid var(--btnLogin);
+    height: auto;
+    width: 100%;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.userForm {
+    border: none;
+    background-color: var(--btnLogin);
+    height: auto;
+    width: 120px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    color: var(--bgColor);
+    margin: 5px;
+}
+
+.devSubmitForm {
+    background-color: var(--confirmBtn);
+    color: var(--bgColor);
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 150px;
+    font-family: Inconsolata;
+    font-size: 22px;
+}
+
+.clearForm {
+    background-color: var(--cancelBtn);
+    color: var(--bgColor);
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 150px;
+    font-family: Inconsolata;
+    font-size: 22px;
+}
+/*Footer*/
+.footer {
+    color: var(--btnLogin);
 }
