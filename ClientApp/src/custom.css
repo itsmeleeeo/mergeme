@@ -10,8 +10,8 @@
     --confirmBtn: #0cce6b;
     --cancelBtn: #ef2d56;
     --bgColor: #F8FAFC;
-    --btnLogin: #010C80;
-    --btnSignUp: #010C80;
+    --btnLogin: #0569ff;
+    --btnSignUp: #0569ff;
 }
 
 html {
@@ -30,6 +30,12 @@ h1, h2, h3, h4, h5, h6, p, span, label {
     justify-content: center;
 }
 
+.dsp-flex-start {
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+}
+
 .dsp-between {
     display: flex;
     align-content: center;
@@ -45,7 +51,6 @@ h1, h2, h3, h4, h5, h6, p, span, label {
 .dsp-grid-center {
     display: grid;
     align-content: center;
-    justify-content:center;
 }
 
 
@@ -63,6 +68,10 @@ h1, h2, h3, h4, h5, h6, p, span, label {
 
 .mt-30 {
     margin-top: 30px;
+}
+
+.mt-80 {
+    margin-top: 80px;
 }
 
 .mr-5 {
@@ -99,6 +108,10 @@ h1, h2, h3, h4, h5, h6, p, span, label {
 
 .mb-30 {
     margin-bottom: 30px;
+}
+
+.mb-80 {
+    margin-bottom: 80px;
 }
 
 .ml-5 {
@@ -177,10 +190,6 @@ h1, h2, h3, h4, h5, h6, p, span, label {
     padding-left: 15px;
 }
 
-body {
-    background-color: var(--bgColor);
-}
-
 /*Navbar*/
 
 .btnLogin {
@@ -230,39 +239,44 @@ body {
 }
 
 .createAccountTxt {
+    color: #000000;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.getMerged {
     color: var(--btnLogin);
     font-size: 3rem;
     font-weight: bold;
-    text-align: center;
 }
 
-/*section*/
-.sectionHeight {
-    height: 500px;
+.hookText {
+    color: #b2b2b2;
 }
+/*section*/
 
 .registerDeveloper {
     border: 2px solid var(--btnLogin);
     background-color: var(--btnLogin);
-    padding: 15px;
-    margin: 15px;
     font-family: 'Inconsolata';
     color: var(--bgColor);
     text-align: center;
     border-radius: 5px;
     transition: ease-in-out 0.4s;
+    width: 120px;
+    height: 40px;
 }
 
 .registerDeveloper:hover {
     border: 2px solid var(--btnLogin);
     background-color: var(--bgColor);
-    padding: 15px;
-    margin: 15px;
     font-family: 'Inconsolata';
     color: var(--btnLogin);
     text-align: center;
     border-radius: 5px;
     transition: ease-in-out 0.4s;
+    width: 120px;
+    height: 40px;
 }
 
 .registerRecruiter {
@@ -289,21 +303,17 @@ body {
     transition: ease-in-out 0.4s;
 }
 
-.testimonial {
-    background-color: var(--btnLogin);
-    border-radius:5px;
-}
-
-.testimonialTxt {
-    color: var(--bgColor);
-    font-size: 3rem;
+.testimonialTab {
+    color: #000000;
+    font-size: 1rem;
     text-align: center;
     padding-top: 15px;
-    padding-bottom: 15px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 .cardTestimonial {
-    border: 2px solid var(--bgColor);
+    border: 2px solid #b0b0b0;
     height: auto;
     width: auto;
     border-radius: 5px;
@@ -311,23 +321,40 @@ body {
 }
 
 .headerCardTestimonial {
-    color: var(--bgColor);
-    font-size: 22px;
+    color: #000f;
+    font-size: 16px;
     padding: 0px 10px 0px 10px;
 }
 
+.cardImage {
+    margin: 10px;
+    border-radius: 50%;
+    height: auto;
+}
 /*register form*/
 .FormSignUp {
     border: 2px solid var(--btnLogin);
-    height:auto;
+    height: auto;
     width: 100%;
     border-radius: 5px;
-    padding:15px;
+    padding: 15px;
+}
+
+.userForm {
+    border: none;
+    background-color: var(--btnLogin);
+    height: auto;
+    width: 120px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    color: var(--bgColor);
+    margin: 5px;
 }
 
 .devSubmitForm {
     background-color: var(--confirmBtn);
-    color:var(--bgColor);
+    color: var(--bgColor);
     border: none;
     border-radius: 5px;
     height: 50px;

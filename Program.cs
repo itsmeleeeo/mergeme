@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddCors();
 builder.Services.AddSqlServer<ApplicationDbContext>(builder.Configuration["ConnectionStrings:MergeMe"]);
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
@@ -30,6 +31,7 @@ app.MapMethods(RecruiterPost.Template, RecruiterPost.Method, RecruiterPost.Handl
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:44404"));
 
 app.MapControllerRoute(
     name: "default",

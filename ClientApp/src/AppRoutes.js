@@ -1,4 +1,4 @@
-import RegisterDeveloper from "./components/RegisterDeveloper";
+import RegisterUser from "./components/RegisterUser";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 
@@ -8,8 +8,8 @@ const AppRoutes = [
     element: <Home />
   },
   {
-    path: '/developer',
-    element: <RegisterDeveloper />
+    path: '/signup',
+    element: <RegisterUser />
   },
   {
     path: '/fetch-data',
