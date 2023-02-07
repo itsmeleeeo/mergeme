@@ -9,7 +9,7 @@ namespace MergeMe.Controllers
     public class DeveloperPost
     {
         public static string Template => "/developer";
-        public static string[] Methods => new string[] { HttpMethod.Post.ToString() };
+        public static string[] Method => new string[] { HttpMethod.Post.ToString() };
         public static Delegate Handler => Action;
 
         public static IResult Action(DeveloperRequest developerRequest, UserManager<IdentityUser> userManager)

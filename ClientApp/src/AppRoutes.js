@@ -1,6 +1,7 @@
 import RegisterUser from "./components/RegisterUser";
-import { FetchData } from "./components/FetchData";
+import Login from "./components/Login";
 import { Home } from "./components/Home";
+import Dashboard from './components/Dashboard'
 
 const AppRoutes = [
   {
@@ -12,8 +13,12 @@ const AppRoutes = [
     element: <RegisterUser />
   },
   {
-    path: '/fetch-data',
-    element: <FetchData />
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard />
   }
 ];
 
