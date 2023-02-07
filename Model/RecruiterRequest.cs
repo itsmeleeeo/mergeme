@@ -1,4 +1,4 @@
 ﻿namespace MergeMe.Model
 {
-    public record RecruiterRequest(string companyName, string businessName, string email, string password);
+    public record RecruiterRequest(string firstName, string lastName, string email, string password);
 }
