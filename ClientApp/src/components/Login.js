@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import Dashboard from './Dashboard'
+import { useNavigate } from 'react-router-dom'
 import Footer from './Footer'
 
 function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -13,21 +14,22 @@ function Login() {
             email,
             password
         };
-
-        await fetch('https://localhost:7033/login',  {
+        await fetch('https://localhost:7033/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
-        }).then((resp) => {
-            return resp.json()
-        }).then((err) => {
-            console.log(err);
-        });
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log('success: ', data)
+                navigate('/dashboard/developer')
+            })
+            .catch((err) => {
+                console.error('error: ', err);
+            });
     }
-
     return (
         <div className="container">
             <div className="row">

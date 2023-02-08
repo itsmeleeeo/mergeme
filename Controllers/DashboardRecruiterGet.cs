@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MergeMe.Controllers
 {
-    public class DashboardGet
+    public class DashboardRecruiterGet
     {
         public static string Template => "/dashboard/recruiter";
         public static string[] Method => new string[] { HttpMethod.Get.ToString() };
         public static Delegate Handler => Action;
 
-        [Authorize]
         public static IResult Action(ApplicationDbContext context)
         {
             var developer = context.Developer.ToList();
