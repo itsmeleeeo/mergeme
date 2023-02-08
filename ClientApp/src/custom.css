@@ -410,7 +410,35 @@ h1, h2, h3, h4, h5, h6, p, span, label {
     height: auto;
 }
 
+.likeButton {
+    border: 2px solid #000;
+    border-radius: 50%;
+    box-shadow: 15px 10px 10px 0 rgba(0, 0, 0, 0.4);
+    height: auto;
+    width: 60px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.likeImg {
+    height: auto;
+    width: 100%;
+    padding: 10px;
+}
+
 /*Footer*/
 .footer {
     color: var(--btnLogin);
+}
+
+/*media query*/
+
+@media only screen and (max-width: 650px){
+    .card {
+        width: 100%;
+    }
+
+    .card-flex {
+        display: block;
+    }
 }
