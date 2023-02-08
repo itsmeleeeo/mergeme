@@ -1,7 +1,8 @@
 import RegisterUser from "./components/RegisterUser";
 import Login from "./components/Login";
 import { Home } from "./components/Home";
-import Dashboard from './components/Dashboard'
+import DashboardDeveloper from './components/DashboardDeveloper'
+import DashboardRecruiter from './components/DashboardRecruiter'
 
 const AppRoutes = [
   {
@@ -17,8 +18,12 @@ const AppRoutes = [
     element: <Login />
   },
   {
-    path: '/dashboard',
-    element: <Dashboard />
+    path: '/dashboard/developer',
+    element: <DashboardDeveloper />
+  },
+  {
+      path: '/dashboard/recruiter',
+      element: <DashboardRecruiter />
   }
 ];
 

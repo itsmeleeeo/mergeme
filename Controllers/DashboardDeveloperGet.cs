@@ -1,4 +1,5 @@
 ﻿using MergeMe.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MergeMe.Controllers
 {

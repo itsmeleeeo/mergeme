@@ -1,4 +1,5 @@
 ﻿import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Footer from './Footer'
 
 function RecruiterForm() {
@@ -6,6 +7,7 @@ function RecruiterForm() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const nav = useNavigate();
 
     const handleSubmit = async () => {
         const user = {
@@ -25,6 +27,7 @@ function RecruiterForm() {
         }).then((resp) => resp.json())
             .then((user) => {
                 console.log('Success:', user);
+                nav('/')
         }).catch((err) => {
             alert(`Something went wrong ${err}`)
             console.error('Error:', err);

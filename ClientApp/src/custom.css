@@ -373,6 +373,43 @@ h1, h2, h3, h4, h5, h6, p, span, label {
     font-family: Inconsolata;
     font-size: 22px;
 }
+
+/*dashboard*/
+
+.card {
+    border: 2px solid #000;
+    border-radius: 10px;
+    height: auto;
+    width: 600px;
+    box-shadow: 15px 10px 10px 0 rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    background-image: linear-gradient(var(--btnLogin), var(--bgColor));
+}
+
+.imgCard {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.username {
+    color: #fff;
+}
+
+.stackInfo {
+    list-style:none;
+}
+
+.bioBox {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+}
+
 /*Footer*/
 .footer {
     color: var(--btnLogin);
