@@ -3,6 +3,7 @@ import Login from "./components/Login";
 import { Home } from "./components/Home";
 import DashboardDeveloper from './components/DashboardDeveloper'
 import DashboardRecruiter from './components/DashboardRecruiter'
+import EditProfile from "./components/editForm";
 
 const AppRoutes = [
   {
@@ -24,6 +25,10 @@ const AppRoutes = [
   {
       path: '/dashboard/recruiter',
       element: <DashboardRecruiter />
+  },
+  {
+    path: '/edit',
+    element: <EditProfile />
   }
 ];
 
