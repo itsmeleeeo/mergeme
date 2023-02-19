@@ -10,23 +10,25 @@ namespace MergeMe.Model
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string ProfileImageUrl { get; set; }
+        public string UserBio { get; set; }
 
         private Company Company { get; set; }
         private List<Match> matches { get; set; }
 
-        public Recruiter(string firstName, string lastName, string email, string password)
+        public Recruiter(string firstName, string lastName, string email, string password, string profileImageUrl, string userBio)
         {
             var contract = new Contract<Recruiter>()
                 .IsNotNullOrEmpty(firstName, "FirstName")
-                .IsNotNullOrEmpty(lastName, "LastName")
-                .IsNotNullOrEmpty(email, "Email")
-                .IsNotNullOrEmpty(password, "Password");
+                .IsNotNullOrEmpty(lastName, "LastName");
             AddNotifications(contract);
 
             FirstName = firstName;
             LastName = lastName;
             Email = email;
             Password = password;
+            ProfileImageUrl = profileImageUrl;
+            UserBio = userBio;
         }
     }
 }

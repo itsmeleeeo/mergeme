@@ -2,7 +2,7 @@
 {
     public class RecruiterResponse
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string CompanyName { get; set; }
+        public string BusinessNumber { get; set; }
     }
 }
