@@ -16,13 +16,13 @@ namespace MergeMe.Model
         private Company Company { get; set; }
         private List<Match> matches { get; set; }
 
-        public Recruiter(string firstName, string lastName, string email, string password, string profileImageUrl, string userBio)
+        public Recruiter(int id,string firstName, string lastName, string email, string password, string profileImageUrl, string userBio)
         {
             var contract = new Contract<Recruiter>()
                 .IsNotNullOrEmpty(firstName, "FirstName")
                 .IsNotNullOrEmpty(lastName, "LastName");
             AddNotifications(contract);
-
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Email = email;

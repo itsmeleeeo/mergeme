@@ -61,6 +61,9 @@ app.MapMethods(DashboardRecruiterGet.Template, DashboardRecruiterGet.Method, Das
 app.MapMethods(DashboardDeveloperGet.Template, DashboardDeveloperGet.Method, DashboardDeveloperGet.Handler);
 app.MapMethods(StacksGET.Template, StacksGET.Method, StacksGET.Handler);
 
+//PUT Methods
+app.MapMethods(DeveloperPUT.Template, DeveloperPUT.Method, DeveloperPUT.Handler);
+
 app.UseStaticFiles();
 app.UseRouting();
 

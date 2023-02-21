@@ -40,7 +40,7 @@ namespace MergeMe.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("MergeMe.Model.Developer", b =>
@@ -88,7 +88,7 @@ namespace MergeMe.Migrations
 
                     b.HasIndex("StacksId");
 
-                    b.ToTable("Developer");
+                    b.ToTable("Developer", (string)null);
                 });
 
             modelBuilder.Entity("MergeMe.Model.Match", b =>
@@ -104,7 +104,7 @@ namespace MergeMe.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("match");
+                    b.ToTable("match", (string)null);
                 });
 
             modelBuilder.Entity("MergeMe.Model.Recruiter", b =>
@@ -152,7 +152,7 @@ namespace MergeMe.Migrations
 
                     b.HasIndex("StacksId");
 
-                    b.ToTable("Recruiter");
+                    b.ToTable("Recruiter", (string)null);
                 });
 
             modelBuilder.Entity("MergeMe.Model.StackFromDeveloper", b =>
@@ -175,7 +175,7 @@ namespace MergeMe.Migrations
 
                     b.HasIndex("stacksId");
 
-                    b.ToTable("DeveloperStack");
+                    b.ToTable("DeveloperStack", (string)null);
                 });
 
             modelBuilder.Entity("MergeMe.Model.StackFromRecruiter", b =>
@@ -198,7 +198,7 @@ namespace MergeMe.Migrations
 
                     b.HasIndex("stacksId");
 
-                    b.ToTable("RecruiterStack");
+                    b.ToTable("RecruiterStack", (string)null);
                 });
 
             modelBuilder.Entity("MergeMe.Model.Stacks", b =>
@@ -221,7 +221,7 @@ namespace MergeMe.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stack");
+                    b.ToTable("Stack", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

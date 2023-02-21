@@ -14,7 +14,8 @@ namespace MergeMe.Model
         public string ProfileImageUrl { get; set; }
         public string UserBio { get; set; }
 
-        private List<Match> matches { get; set; }
+        private List<Match> Matches { get; set; }
+        private List<StackFromDeveloper> StackFromDeveloper { get; set; }
 
         public Developer(string firstName, string lastName, string email, string password, string profileImageUrl, string userBio)
         {
@@ -29,6 +30,15 @@ namespace MergeMe.Model
             Password = password;
             ProfileImageUrl = profileImageUrl;
             UserBio = userBio;
+        }
+
+        public void EditInfo(string firstName, string lastName, string profileImg, string userbio, List<StackFromDeveloper> stackFromDeveloper)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            ProfileImageUrl = profileImg;
+            UserBio = userbio;
+            StackFromDeveloper = stackFromDeveloper;
         }
 
     }

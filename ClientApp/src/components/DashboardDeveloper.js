@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import CardProfile from '../components/CardProfile'
+import CardProfile from '../components/CardDeveloperProfile'
 import EditButton from './editButton';
 import Footer from './Footer'
+
 
 function DashboardDeveloper() {
 
