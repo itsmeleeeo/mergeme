@@ -17,17 +17,15 @@ function Login() {
         await fetch('https://localhost:7033/login', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+                'Content-Type': 'application/json' },
             body: JSON.stringify(user)
-        }).then((response) => response.json())
-            .then((data) => {
-                console.log('success: ', data)
+        }).then((resp) => resp.json())
+            .then((user) => {
+                console.log('Success:', user);
                 navigate('/dashboard/developer')
-            })
-            .catch((err) => {
-                console.error('error: ', err);
+            }).catch((err) => {
+                alert(`Something went wrong ${err}`)
+                console.error('Error:', err);
             });
     }
     return (
@@ -49,7 +47,7 @@ function Login() {
                                 <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
                             <div className="dsp-around mt-10 mb-30">
-                                <input type="submit" value="Login" className="devSubmitForm"></input>
+                                <button type="submit" className="devSubmitForm">Login</button>
                             </div>
                         </form>
                     </div>

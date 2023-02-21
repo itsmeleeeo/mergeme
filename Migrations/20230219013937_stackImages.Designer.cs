@@ -4,6 +4,7 @@ using MergeMe.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MergeMe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230219013937_stackImages")]
+    partial class stackImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +42,7 @@ namespace MergeMe.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies", (string)null);
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("MergeMe.Model.Developer", b =>
@@ -71,24 +73,14 @@ namespace MergeMe.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("ProfileImageUrl")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<int?>("StacksId")
                         .HasColumnType("int");
-
-                    b.Property<string>("UserBio")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("StacksId");
 
-                    b.ToTable("Developer", (string)null);
+                    b.ToTable("Developer");
                 });
 
             modelBuilder.Entity("MergeMe.Model.Match", b =>
@@ -104,7 +96,7 @@ namespace MergeMe.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("match", (string)null);
+                    b.ToTable("match");
                 });
 
             modelBuilder.Entity("MergeMe.Model.Recruiter", b =>
@@ -135,24 +127,14 @@ namespace MergeMe.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("ProfileImageUrl")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<int?>("StacksId")
                         .HasColumnType("int");
-
-                    b.Property<string>("UserBio")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("StacksId");
 
-                    b.ToTable("Recruiter", (string)null);
+                    b.ToTable("Recruiter");
                 });
 
             modelBuilder.Entity("MergeMe.Model.StackFromDeveloper", b =>
@@ -175,7 +157,7 @@ namespace MergeMe.Migrations
 
                     b.HasIndex("stacksId");
 
-                    b.ToTable("DeveloperStack", (string)null);
+                    b.ToTable("DeveloperStack");
                 });
 
             modelBuilder.Entity("MergeMe.Model.StackFromRecruiter", b =>
@@ -198,7 +180,7 @@ namespace MergeMe.Migrations
 
                     b.HasIndex("stacksId");
 
-                    b.ToTable("RecruiterStack", (string)null);
+                    b.ToTable("RecruiterStack");
                 });
 
             modelBuilder.Entity("MergeMe.Model.Stacks", b =>
@@ -221,7 +203,7 @@ namespace MergeMe.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stack", (string)null);
+                    b.ToTable("Stack");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

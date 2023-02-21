@@ -2,7 +2,9 @@
 {
     public class RecruiterResponse
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int Id {get; set;}
+        public string CompanyName { get; set; }
+        public string profileImageUrl {get; set;}
+        public string Userbio {get; set;}
     }
 }

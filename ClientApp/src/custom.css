@@ -20,7 +20,7 @@ html {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6, p, span, label {
+h1, h2, h3, h4, h5, h6, p, span, label, li {
     font-family: 'Inconsolata'
 }
 
@@ -377,25 +377,31 @@ h1, h2, h3, h4, h5, h6, p, span, label {
 /*dashboard*/
 
 .card {
-    border: 2px solid #000;
+    border: 5px solid var(--btnLogin);
     border-radius: 10px;
     height: auto;
     width: 600px;
     box-shadow: 15px 10px 10px 0 rgba(0, 0, 0, 0.4);
     padding: 15px;
-    background-image: linear-gradient(var(--btnLogin), var(--bgColor));
 }
 
 .imgCard {
-    border: 2px solid #fff;
+    height: auto;
+    padding: 10px;
+    width: 250px;
+}
+
+.frame {
+    border: 2px solid var(--btnLogin);
     border-radius: 5px;
     padding: 10px;
     width: 100%;
     height: auto;
+    text-align: center;
 }
 
 .username {
-    color: #fff;
+    color: #000;
 }
 
 .stackInfo {
@@ -403,7 +409,7 @@ h1, h2, h3, h4, h5, h6, p, span, label {
 }
 
 .bioBox {
-    border: 2px solid #fff;
+    border: 2px solid var(--btnLogin);;
     border-radius: 5px;
     padding: 10px;
     width: 100%;

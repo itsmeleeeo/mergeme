@@ -3,7 +3,7 @@ import Login from "./components/Login";
 import { Home } from "./components/Home";
 import DashboardDeveloper from './components/DashboardDeveloper'
 import DashboardRecruiter from './components/DashboardRecruiter'
-import EditProfile from "./components/editForm";
+import EditProfile from "./components/editDeveloperForm";
 
 const AppRoutes = [
   {
