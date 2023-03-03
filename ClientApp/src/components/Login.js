@@ -24,7 +24,7 @@ function Login() {
                 console.log('Success:', user);
                 navigate('/dashboard/developer')
             }).catch((err) => {
-                alert(`Something went wrong ${err}`)
+                alert(`username or password may be wrong or not exist`)
                 console.error('Error:', err);
             });
     }

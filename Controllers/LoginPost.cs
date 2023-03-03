@@ -19,12 +19,12 @@ namespace MergeMe.Controllers
 
             if(user == null)
             {
-                Results.BadRequest();
+                return Results.BadRequest();
             }
 
             if(!userManager.CheckPasswordAsync(user, loginRequest.password).Result)
             {
-                Results.BadRequest();
+                return Results.BadRequest();
             }
 
             var key = Encoding.ASCII.GetBytes(configuration["JwtBearerTokenSettings:SecretKey"]);

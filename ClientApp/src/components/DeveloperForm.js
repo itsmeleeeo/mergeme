@@ -25,7 +25,7 @@ function DeveloperForm() {
         }).then((resp) => resp.json())
             .then((user) => {
                 console.log('Success:', user);
-                nav('/')
+                nav('/login')
             }).catch((err) => {
                 alert(`Something went wrong ${err}`)
                 console.error('Error:', err);
