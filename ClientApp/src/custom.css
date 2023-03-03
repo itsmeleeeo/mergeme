@@ -380,7 +380,7 @@ h1, h2, h3, h4, h5, h6, p, span, label, li {
     border: 5px solid var(--btnLogin);
     border-radius: 10px;
     height: auto;
-    width: 600px;
+    width: 100%;
     box-shadow: 15px 10px 10px 0 rgba(0, 0, 0, 0.4);
     padding: 15px;
 }
@@ -430,6 +430,15 @@ h1, h2, h3, h4, h5, h6, p, span, label, li {
     height: auto;
     width: 100%;
     padding: 10px;
+}
+
+.matchBox {
+    border: 1px solid black;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /*Footer*/

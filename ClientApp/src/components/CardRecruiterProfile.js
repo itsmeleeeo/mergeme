@@ -5,7 +5,7 @@ import DislikeButton from './DislikeButton'
 function CardProfile() {
 
     const fecthUsers = async () => {
-        const resp = await fetch('https://localhost:7033/dashboard/developer');
+        const resp = await fetch('https://localhost:7033/dashboard/recruiter');
         const data = await resp.json();
         return data;
     }
