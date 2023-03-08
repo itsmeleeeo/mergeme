@@ -12,6 +12,9 @@ function EditProfile() {
     const [userbio, setUserbio] = useState('');
     const [profileImage, setProfileImage] = useState('');
     const nav = useNavigate();
+    
+    const id = sessionStorage.getItem('Id')
+    console.log(id)
 
     useEffect(() => {
         handleStackData();
@@ -64,45 +67,45 @@ function EditProfile() {
                     <div className="col-lg-12">
                         <form onSubmit={handleSubmit}>
                             <div>
-                                <label for="exampleInputEmail1" class="form-label">Enter your first name</label>
+                                <label className="form-label">Enter your first name</label>
                                 <input type="text" placeholder="John" className="form-control" value={firstName} onChange={(e) => setFirstname(e.target.value)} required />
                             </div>
                             <div>
-                                <label for="exampleInputEmail1" class="form-label">Enter your last name</label>
+                                <label className="form-label">Enter your last name</label>
                                 <input type="text" placeholder="Doe" className="form-control" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
                             </div>
                             <div>
-                                <label for="exampleInputEmail1" class="form-label">Enter your position</label>
+                                <label className="form-label">Enter your position</label>
                                 <input type="text" placeholder="eg.Full-Stack Developer" className="form-control" value={position} onChange={(e) => setPosition(e.target.value)} required />
                             </div>
                             <div>
-                                <label for="exampleInputEmail1" class="form-label">Select your first option</label>
-                                <div id="emailHelp" class="form-text">Choose the first language in which you are most proficient and it will be your profile picture</div>
-                                <select onChange={handleStackChoice} class="form-select" aria-label="Default select example">
+                                <label className="form-label">Select your first option</label>
+                                <div id="emailHelp" className="form-text">Choose the first language in which you are most proficient and it will be your profile picture</div>
+                                <select onChange={handleStackChoice} className="form-select" aria-label="Default select example">
                                     {stackData && stackData.length > 0 && stackData.map((stack, i) => (
-                                        <option key={stack.id} value={stack.stackName} >{stack.stackName}</option>
+                                        <option key={i} value={stack.stackName} >{stack.stackName}</option>
                                     ))}
                                 </select>
                             </div>
                             <div>
-                                <label for="exampleInputEmail1" class="form-label">Select your second option</label>
-                                <select onChange={handleStackChoice} class="form-select" aria-label="Default select example">
+                                <label className="form-label">Select your second option</label>
+                                <select onChange={handleStackChoice} className="form-select" aria-label="Default select example">
                                     {stackData && stackData.length > 0 && stackData.map((stack, i) => (
-                                        <option key={stack.id} value={stack.stackName}>{stack.stackName}</option>
+                                        <option key={i} value={stack.stackName}>{stack.stackName}</option>
                                     ))}
                                 </select>
                             </div>
                             <div>
-                                <label for="exampleInputEmail1" class="form-label">Select your third option</label>
-                                <select onChange={handleStackChoice} class="form-select" aria-label="Default select example">
+                                <label className="form-label">Select your third option</label>
+                                <select onChange={handleStackChoice} className="form-select" aria-label="Default select example">
                                     {stackData && stackData.length > 0 && stackData.map((stack, i) => (
-                                        <option key={stack.id} value={stack.stackName}>{stack.stackName}</option>
+                                        <option key={i} value={stack.stackName}>{stack.stackName}</option>
                                     ))}
                                 </select>
                             </div>
                             <div>
-                                <label for="exampleInputEmail1" class="form-label">Type your bio</label>
-                                <textarea class="form-control" placeholder="Leave a comment here" value={userbio} onChange={(e) => setUserbio(e.target.value)}></textarea>
+                                <label className="form-label">Type your bio</label>
+                                <textarea className="form-control" placeholder="Leave a comment here" value={userbio} onChange={(e) => setUserbio(e.target.value)}></textarea>
                             </div>
                             <div className="dsp-around mt-10 mb-30">
                                 <input type="submit" value="Update" className="devSubmitForm" />
