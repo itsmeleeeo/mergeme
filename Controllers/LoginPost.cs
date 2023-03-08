@@ -16,6 +16,7 @@ namespace MergeMe.Controllers
         public static IResult Action(LoginRequest loginRequest, IConfiguration configuration , UserManager<IdentityUser> userManager)
         {
             var user = userManager.FindByEmailAsync(loginRequest.email).Result;
+            var userInfo = userManager.GetClaimsAsync(user);
 
             if(user == null)
             {
@@ -46,7 +47,9 @@ namespace MergeMe.Controllers
 
             return Results.Ok(new
             {
-                token = tokenHandler.WriteToken(token)
+                token = tokenHandler.WriteToken(token),
+                user = user.Id,
+                userInfo = userInfo
             });
         }
     }

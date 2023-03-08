@@ -4,7 +4,7 @@
 
 namespace MergeMe.Migrations
 {
-    public partial class changingClassProps : Migration
+    public partial class settingMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

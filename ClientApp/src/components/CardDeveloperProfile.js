@@ -67,8 +67,8 @@ function CardProfile() {
                             companyInfo.length > 0 ? (
                                 <div>
                                     {
-                                        companyInfo.map(companyInfo => {
-                                           return <div className="card mt-30" key={companyInfo.id}>
+                                        companyInfo.map((companyInfo, i) => {
+                                           return <div className="card mt-30" key={i}>
                                                 <div className="frame">
                                                     <img className="imgCard" src={companyInfo.profileImageUrl} alt="user" />
                                                 </div>
