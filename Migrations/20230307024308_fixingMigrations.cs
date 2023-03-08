@@ -4,7 +4,7 @@
 
 namespace MergeMe.Migrations
 {
-    public partial class settingfields : Migration
+    public partial class fixingMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

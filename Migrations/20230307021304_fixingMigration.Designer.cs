@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MergeMe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230303210624_settingfieldsAgain")]
-    partial class settingfieldsAgain
+    [Migration("20230307021304_fixingMigration")]
+    partial class fixingMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

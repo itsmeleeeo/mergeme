@@ -6,6 +6,7 @@ function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [userInfo, setUserInfo] = useState();
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -22,6 +23,10 @@ function Login() {
         }).then((resp) => resp.json())
             .then((user) => {
                 console.log('Success:', user);
+                sessionStorage.setItem('token', JSON.stringify(user))
+                sessionStorage.setItem('Id', JSON.stringify(user))
+                sessionStorage.setItem('name', JSON.stringify(user))
+                setUserInfo(user);
                 navigate('/dashboard/developer')
             }).catch((err) => {
                 alert(`username or password may be wrong or not exist`)
