@@ -6,6 +6,6 @@
         public string CompanyName { get; set; }
         public int BussinessNumber { get; set; }
 
-        private List<Recruiter> recruiters { get; set; }
+        private Recruiter recruiter { get; set; }
     }
 }

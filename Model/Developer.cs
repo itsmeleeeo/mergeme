@@ -1,21 +1,17 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
-using Microsoft.AspNetCore.Identity;
 
 namespace MergeMe.Model
 {
     public class Developer : Notifiable<Notification>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string ProfileImageUrl { get; set; }
         public string UserBio { get; set; }
-
-        private List<Match> Matches { get; set; }
-        private List<StackFromDeveloper> StackFromDeveloper { get; set; }
 
         public Developer(string firstName, string lastName, string email, string password, string profileImageUrl, string userBio)
         {
@@ -32,13 +28,12 @@ namespace MergeMe.Model
             UserBio = userBio;
         }
 
-        public void EditInfo(string firstName, string lastName, string profileImg, string userbio, List<StackFromDeveloper> stackFromDeveloper)
+        public void EditInfo(string firstName, string lastName, string profileImg, string userbio)
         {
             FirstName = firstName;
             LastName = lastName;
             ProfileImageUrl = profileImg;
             UserBio = userbio;
-            StackFromDeveloper = stackFromDeveloper;
         }
 
     }

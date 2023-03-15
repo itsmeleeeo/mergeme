@@ -35,7 +35,7 @@ namespace MergeMe.Model
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configuration)
         {
-            configuration.Properties<string>().HaveMaxLength(100);
+            configuration.Properties<string>().HaveMaxLength(1000);
         }
     }
 }

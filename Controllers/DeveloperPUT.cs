@@ -6,11 +6,11 @@ namespace MergeMe.Controllers
 {
     public class DeveloperPUT
     {
-        public static string Template => "/developer/{id:guid}";
+        public static string Template => "/developer/{id:int}";
         public static string[] Method => new string[] { HttpMethod.Put.ToString() };
         public static Delegate Handler => Action;
 
-        public static IResult Action([FromRoute]Guid id, HttpContext http, DeveloperRequest developerRequest, ApplicationDbContext context)
+        public static IResult Action([FromRoute]int id, HttpContext http, DeveloperRequest developerRequest, ApplicationDbContext context)
         {
             var userId = http.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
             var developer = context.Developer.Where(c => c.Id == id).FirstOrDefault();
@@ -20,7 +20,7 @@ namespace MergeMe.Controllers
                 return Results.BadRequest();
             }
 
-           developer.EditInfo(developerRequest.firstName, developerRequest.lastName, developerRequest.profileImageUrl, developerRequest.userBio, developerRequest.StackFromDevelopers);
+           developer.EditInfo(developerRequest.firstName, developerRequest.lastName, developerRequest.profileImageUrl, developerRequest.userBio);
 
             if(!developer.IsValid)
             {

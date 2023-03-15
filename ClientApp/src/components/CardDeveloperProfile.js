@@ -4,8 +4,18 @@ import DislikeButton from './DislikeButton'
 
 function CardProfile() {
 
+    const [companyInfo, setCompanyInfo] = useState([]);
+    const [like, setLike] = useState([]);
+    const [currentCompanyIndex, setCurrentCompanyIndex] = useState(0);
+
     const fecthUsers = async () => {
         const resp = await fetch('https://localhost:7033/dashboard/developer');
+        const data = await resp.json();
+        return data;
+    }
+
+    const fetchStacks = async () => {
+        const resp = await fetch('https://localhost:7033/recruiterstack');
         const data = await resp.json();
         return data;
     }
@@ -18,15 +28,16 @@ function CardProfile() {
 
     const handleDislike = async () => {
         const user = await fecthUsers();
-        let i = user.findIndex((user) => user.id === currentUserId)
+        let i = user.findIndex((user) => user.id === companyInfo[currentCompanyIndex].id)
         let currentUser  = user[i];
-        user.splice(currentUser);
+        user.splice(i, 1);
         handleCardRemove(currentUser.id);
+        setCurrentCompanyIndex(currentCompanyIndex + 1)
     }
 
     const handleLike = async () => {
         const user = await fecthUsers();
-        let i = user.findIndex((user) => user.id === currentUserId)
+        let i = user.findIndex((user) => user.id === companyInfo[currentCompanyIndex].id)
         let currentUser  = user[i];
         let nextUser = user[i + 1];
 
@@ -42,6 +53,7 @@ function CardProfile() {
         setLike((previousLike) => [...previousLike, currentUser.id])
         console.log(currentUser)
         handleCardRemove(currentUser.id);
+        setCurrentCompanyIndex(currentCompanyIndex + 1)
     }
 
     const handleCardRemove = (userId) => {
@@ -49,13 +61,10 @@ function CardProfile() {
         removedUser.remove()
         console.log(`${userId} removed`)
     }
-
-    const [companyInfo, setCompanyInfo] = useState([]);
-    const [like, setLike] = useState([]);
-    const currentUserId = companyInfo.length > 0 ? companyInfo[0].id : null
     
     useEffect(() => {
         handleRecruitersData();
+        fetchStacks();
     }, [])
 
     return (

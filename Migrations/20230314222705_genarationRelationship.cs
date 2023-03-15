@@ -4,7 +4,7 @@
 
 namespace MergeMe.Migrations
 {
-    public partial class context : Migration
+    public partial class genarationRelationship : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

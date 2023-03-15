@@ -13,8 +13,7 @@ namespace MergeMe.Model
         public string ProfileImageUrl { get; set; }
         public string UserBio { get; set; }
 
-        private Company Company { get; set; }
-        private List<Match> matches { get; set; }
+        public List<StackFromRecruiter> stackFromRecruiter { get; set; }
 
         public Recruiter(int id,string firstName, string lastName, string email, string password, string profileImageUrl, string userBio)
         {
