@@ -7,6 +7,7 @@ function CardProfile() {
     const [companyInfo, setCompanyInfo] = useState([]);
     const [like, setLike] = useState([]);
     const [currentCompanyIndex, setCurrentCompanyIndex] = useState(0);
+    const [recruiterstack, setRecruiterStack] = useState([]);
 
     const fecthUsers = async () => {
         const resp = await fetch('https://localhost:7033/dashboard/developer');
@@ -24,7 +25,13 @@ function CardProfile() {
     const data = await fecthUsers();
     console.log(data)
     setCompanyInfo(data);
-}
+    }
+
+    const handleStacks = async () => {
+        const data = await fetchStacks();
+        console.log(data);
+        setRecruiterStack(data);
+    }
 
     const handleDislike = async () => {
         const user = await fecthUsers();
@@ -64,7 +71,7 @@ function CardProfile() {
     
     useEffect(() => {
         handleRecruitersData();
-        fetchStacks();
+        handleStacks();
     }, [])
 
     return (
@@ -86,11 +93,15 @@ function CardProfile() {
                                                 </div>
                                                 <div className="bioBox mb-30">
                                                     <p className="username">Stacks:</p>
-                                                    <ul className="stackInfo">
-                                                        <li>stackOne</li>
-                                                        <li>stackTwo</li>
-                                                        <li>stackThree</li>
-                                                    </ul>
+                                                    {
+                                                        recruiterstack.map((recruiterstack, i) => {
+                                                            return <ul className="stackInfo" key={i}>
+                                                                <li>{recruiterstack.stackOne}</li>
+                                                                <li>{recruiterstack.stackTwo}</li>
+                                                                <li>{recruiterstack.stackThree}</li>
+                                                            </ul>
+                                                        })
+                                                    }
                                                     <p className="username">{companyInfo.userbio}</p>
                                                 </div>
                                                 <div className="dsp-flex">
