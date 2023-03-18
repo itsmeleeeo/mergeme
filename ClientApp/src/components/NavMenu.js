@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import '../../src/custom.css'
@@ -6,19 +6,25 @@ import Logo from '../images/MergeMeLogo.png'
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
-
   constructor (props) {
     super(props);
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
-      collapsed: true
+      collapsed: true,
+      loggedIn: sessionStorage.access ? true : false
     };
   }
 
   toggleNavbar () {
     this.setState({
       collapsed: !this.state.collapsed
+    });
+  }
+
+  setLoggedIn(value) {
+    this.setState({
+      loggedIn: value
     });
   }
 
@@ -32,9 +38,16 @@ export class NavMenu extends Component {
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
             <ul className="navbar-nav flex-grow">
+              {this.state.loggedIn ? 
               <NavItem>
-                <NavLink tag={Link} className="btnLogin" to="/login">Login</NavLink>
-              </NavItem>
+                <NavLink tag={Link} className="btnLogin" to={'/login'} onClick={() => {
+                  this.setLoggedIn(false)
+                  sessionStorage.clear()
+                  }}>Logout</NavLink>
+              </NavItem> : 
+              <NavItem>
+                <NavLink tag={Link} className="btnLogin" to={'/login'}>Login</NavLink>
+              </NavItem>}
             </ul>
           </Collapse>
         </Navbar>

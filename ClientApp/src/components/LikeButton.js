@@ -4,7 +4,7 @@ import Like from '../images/heart.png'
 function LikeButton(props) {
     return(
         <div>
-            <button className="likeButton mt-30" onClick={props.like}>
+            <button className="likeButton" onClick={props.like}>
                 <img className="likeImg" src={Like} alt="like button" />
             </button>
         </div>

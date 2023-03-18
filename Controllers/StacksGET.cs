@@ -11,7 +11,7 @@ namespace MergeMe.Controllers
         public static IResult Action(ApplicationDbContext context)
         {
             var stack = context.Stack.ToList();
-            var response = stack.Select(s => new StackResponse { StackName = s.StackName });
+            var response = stack.Select(s => new StackResponse { StackOne = s.StackName, StackTwo = s.StackName, StackThree = s.StackName });
 
             return Results.Ok(response);
         }

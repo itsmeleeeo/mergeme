@@ -6,7 +6,7 @@ namespace MergeMe.Controllers
 {
     public class DeveloperPUT
     {
-        public static string Template => "/developer/{id}";
+        public static string Template => "/developer/{id:int}";
         public static string[] Method => new string[] { HttpMethod.Put.ToString() };
         public static Delegate Handler => Action;
 
@@ -20,7 +20,7 @@ namespace MergeMe.Controllers
                 return Results.BadRequest();
             }
 
-            developer.EditInfo(developerRequest.firstName, developerRequest.lastName, developerRequest.profileImageUrl, developerRequest.userBio, developerRequest.StackFromDevelopers);
+           developer.EditInfo(developerRequest.firstName, developerRequest.lastName, developerRequest.profileImageUrl, developerRequest.userBio);
 
             if(!developer.IsValid)
             {

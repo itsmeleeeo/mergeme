@@ -60,6 +60,7 @@ app.MapMethods(LoginPost.Template, LoginPost.Method, LoginPost.Handler);
 app.MapMethods(DashboardRecruiterGet.Template, DashboardRecruiterGet.Method, DashboardRecruiterGet.Handler);
 app.MapMethods(DashboardDeveloperGet.Template, DashboardDeveloperGet.Method, DashboardDeveloperGet.Handler);
 app.MapMethods(StacksGET.Template, StacksGET.Method, StacksGET.Handler);
+app.MapMethods(RecruiterStackGET.Template, RecruiterStackGET.Method, RecruiterStackGET.Handler);
 
 //PUT Methods
 app.MapMethods(DeveloperPUT.Template, DeveloperPUT.Method, DeveloperPUT.Handler);

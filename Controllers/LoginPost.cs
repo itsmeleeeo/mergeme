@@ -48,8 +48,8 @@ namespace MergeMe.Controllers
             return Results.Ok(new
             {
                 token = tokenHandler.WriteToken(token),
-                user = user.Id,
-                userInfo = userInfo
+                userInfo = userInfo,
+                user = user.Id
             });
         }
     }
