@@ -28,9 +28,11 @@ function CardProfile() {
     }
 
     const handleStacks = async () => {
-        const data = await fetchStacks();
-        console.log(data);
-        setRecruiterStack(data);
+        const stackdata = await fetchStacks();
+        for(let i = 0; i < stackdata.length; i++) {
+                setRecruiterStack(stackdata.slice(i, i + 1));
+                console.log(stackdata.slice(i,i + 1));
+        }
     }
 
     const handleDislike = async () => {
@@ -81,17 +83,32 @@ function CardProfile() {
                     <div className="col-lg-12">
                         {
                             companyInfo.length > 0 ? (
-                                <div>
+                                <div className="cardHolder">
                                     {
                                         companyInfo.map((companyInfo, i) => {
                                            return <div className="card mt-30" key={i}>
                                                 <div className="frame">
                                                     <img className="imgCard" src={companyInfo.profileImageUrl} alt="user" />
-                                                </div>
-                                                <div className="username mt-10 dsp-flex-start">
                                                     <p className="username">{companyInfo.companyName}</p>
+                                                        {
+                                                            recruiterstack.map((recruiterstack, i) => {
+                                                                return <div className="stackInfo" key={i}>
+                                                                    <span>{recruiterstack.stackOne}</span>
+                                                                    <span>{recruiterstack.stackTwo}</span>
+                                                                    <span>{recruiterstack.stackThree}</span>
+                                                                </div>
+                                                            })
+                                                        }
                                                 </div>
-                                                <div className="bioBox mb-30">
+                                                <div className="dsp-flex">
+                                                    <DislikeButton dislike={handleDislike} />
+                                                    <button className="checkBio">Check Bio</button>
+                                                    <LikeButton like={handleLike}/>
+                                                </div>
+                                                {/* <div className="username mt-10 dsp-flex-start">
+                                                    <p className="username">{companyInfo.companyName}</p>
+                                                </div> */}
+                                                {/* <div className="bioBox mb-30">
                                                     <p className="username">Stacks:</p>
                                                     {
                                                         recruiterstack.map((recruiterstack, i) => {
@@ -102,12 +119,12 @@ function CardProfile() {
                                                             </ul>
                                                         })
                                                     }
-                                                    <p className="username">{companyInfo.userbio}</p>
-                                                </div>
-                                                <div className="dsp-flex">
+                                                </div> */}
+                                                    {/* <p className="username">{companyInfo.userbio}</p> */}
+                                                {/* <div className="dsp-flex">
                                                     <DislikeButton dislike={handleDislike} />
                                                     <LikeButton like={handleLike}/>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         })
                                     }

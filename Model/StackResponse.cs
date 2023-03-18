@@ -2,6 +2,8 @@
 {
     public class StackResponse
     {
-        public string StackName { get; set; }
+        public string StackOne { get; set; }
+        public string StackTwo { get; set; }
+        public string StackThree { get; set; }
     }
 }
