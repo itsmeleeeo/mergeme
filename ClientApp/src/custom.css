@@ -461,6 +461,48 @@ h1, h2, h3, h4, h5, h6, p, span, label, li {
     justify-content: center;
 }
 
+.btnCloseModal {
+    background-color: var(--cancelBtn);
+    border: 0;
+    color: var(--bgColor);
+    height: auto;
+    width: 150px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.userBioBox {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    padding: 5px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--bgColor); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    border-radius: 10px;
+  }
+
 /*Footer*/
 .footer {
     color: var(--btnLogin);
