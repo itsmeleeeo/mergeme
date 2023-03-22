@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import LikeButton from './LikeButton'
 import DislikeButton from './DislikeButton'
+import Modal from 'react-bootstrap/Modal';
 
 function CardProfile() {
 
     const [companyInfo, setCompanyInfo] = useState([]);
     const [like, setLike] = useState([]);
     const [currentCompanyIndex, setCurrentCompanyIndex] = useState(0);
-    const [recruiterstack, setRecruiterStack] = useState([]);
+    const [currentStackIndex, setCurrentStackIndex] = useState(0);
+    const [recruiterStack, setRecruiterStack] = useState([]);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const fecthUsers = async () => {
         const resp = await fetch('https://localhost:7033/dashboard/developer');
@@ -23,16 +29,19 @@ function CardProfile() {
     
     const handleRecruitersData = async () => {
     const data = await fecthUsers();
+    const stackdata = await fetchStacks();
     console.log(data)
-    setCompanyInfo(data);
+    setCompanyInfo(data, stackdata);
     }
 
     const handleStacks = async () => {
         const stackdata = await fetchStacks();
-        for(let i = 0; i < stackdata.length; i++) {
-                setRecruiterStack(stackdata.slice(i, i + 1));
-                console.log(stackdata.slice(i,i + 1));
-        }
+        setRecruiterStack(stackdata);
+        console.log(stackdata);
+        // for(let i = 0; i < stackdata.length; i++) {
+        //         setRecruiterStack(stackdata.slice(i, i + 1));
+        //         console.log(stackdata);
+        // }
     }
 
     const handleDislike = async () => {
@@ -86,45 +95,36 @@ function CardProfile() {
                                 <div className="cardHolder">
                                     {
                                         companyInfo.map((companyInfo, i) => {
-                                           return <div className="card mt-30" key={i}>
+                                           return <div className="card mt-30" key={companyInfo.id}>
                                                 <div className="frame">
                                                     <img className="imgCard" src={companyInfo.profileImageUrl} alt="user" />
-                                                    <p className="username">{companyInfo.companyName}</p>
-                                                        {
-                                                            recruiterstack.map((recruiterstack, i) => {
-                                                                return <div className="stackInfo" key={i}>
-                                                                    <span>{recruiterstack.stackOne}</span>
-                                                                    <span>{recruiterstack.stackTwo}</span>
-                                                                    <span>{recruiterstack.stackThree}</span>
-                                                                </div>
-                                                            })
-                                                        }
+                                                    <p className="username">{companyInfo.companyName}</p> 
+                                                    {
+                                                        recruiterStack.slice(i, i + 1).map((recruiterStack, j) => {
+                                                            return <div className="stackInfo" id={j} key={j}>
+                                                                <span>{recruiterStack.stackOne}</span>
+                                                                <span>{recruiterStack.stackTwo}</span>
+                                                                <span>{recruiterStack.stackThree}</span>
+                                                            </div>
+                                                        })
+                                                    }
                                                 </div>
                                                 <div className="dsp-flex">
                                                     <DislikeButton dislike={handleDislike} />
-                                                    <button className="checkBio">Check Bio</button>
+                                                    <button className="checkBio" onClick={handleShow}>Check Bio</button>
+                                                    <Modal show={show} onHide={handleClose}>
+                                                        <Modal.Header closeButton>
+                                                        <Modal.Title>{companyInfo.companyName}</Modal.Title>
+                                                        </Modal.Header>
+                                                        <Modal.Body>{companyInfo.userbio}</Modal.Body>
+                                                        <Modal.Footer>
+                                                        <button className="btnCloseModal" onClick={handleClose}>
+                                                            Close
+                                                        </button>
+                                                        </Modal.Footer>
+                                                    </Modal>
                                                     <LikeButton like={handleLike}/>
                                                 </div>
-                                                {/* <div className="username mt-10 dsp-flex-start">
-                                                    <p className="username">{companyInfo.companyName}</p>
-                                                </div> */}
-                                                {/* <div className="bioBox mb-30">
-                                                    <p className="username">Stacks:</p>
-                                                    {
-                                                        recruiterstack.map((recruiterstack, i) => {
-                                                            return <ul className="stackInfo" key={i}>
-                                                                <li>{recruiterstack.stackOne}</li>
-                                                                <li>{recruiterstack.stackTwo}</li>
-                                                                <li>{recruiterstack.stackThree}</li>
-                                                            </ul>
-                                                        })
-                                                    }
-                                                </div> */}
-                                                    {/* <p className="username">{companyInfo.userbio}</p> */}
-                                                {/* <div className="dsp-flex">
-                                                    <DislikeButton dislike={handleDislike} />
-                                                    <LikeButton like={handleLike}/>
-                                                </div> */}
                                             </div>
                                         })
                                     }

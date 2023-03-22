@@ -461,6 +461,16 @@ h1, h2, h3, h4, h5, h6, p, span, label, li {
     justify-content: center;
 }
 
+.btnCloseModal {
+    background-color: var(--cancelBtn);
+    border: 0;
+    color: var(--bgColor);
+    height: auto;
+    width: 150px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 /*Footer*/
 .footer {
     color: var(--btnLogin);
