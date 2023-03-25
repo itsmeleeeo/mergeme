@@ -20,7 +20,7 @@ namespace MergeMe.Controllers
                 return Results.BadRequest();
             }
 
-           developer.EditInfo(developerRequest.firstName, developerRequest.lastName, developerRequest.profileImageUrl, developerRequest.userBio);
+           developer.EditInfo(developerRequest.profileImageUrl, developerRequest.userBio);
 
             if(!developer.IsValid)
             {

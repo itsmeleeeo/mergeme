@@ -13,7 +13,8 @@ function EditProfile() {
     const [stackTwo, setStackTwo] = useState('');
     const [stackThree, setStackThree] = useState('');
     const [userbio, setUserbio] = useState('');
-    const [profileImage, setProfileImage] = useState('');
+    const [profileImage, setProfileImage] = useState(''); 
+    const [routeId, setRouteId] = useState('');
     const nav = useNavigate();
 
     useEffect(() => {
@@ -24,6 +25,10 @@ function EditProfile() {
                 setFirstname(item.value);
             }else if(item.type === 'LastName') {
                 setLastName(item.value);
+                break;
+            } else if(item.type === 'status') {
+                console.log(item.value)
+                setRouteId(item.value)
                 break;
             }
         }
@@ -38,7 +43,7 @@ function EditProfile() {
         return data
     }
 
-    const handleSubmit = async (e, id) => {
+    const handleSubmit = async (e, routeId) => {
         e.preventDefault();
         const firstName = "";
         const lastName = "";
@@ -69,6 +74,7 @@ function EditProfile() {
                 nav('/')
             }).catch((err) => {
                 console.warn(`Something went wrong ${err}`)
+                console.warn('quebrou')
                 console.error('Error:', err);
             });
     }

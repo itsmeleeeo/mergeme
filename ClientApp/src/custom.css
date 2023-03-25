@@ -469,6 +469,18 @@ h1, h2, h3, h4, h5, h6, p, span, label, li {
     width: 150px;
     padding: 10px;
     border-radius: 5px;
+    font-family: Inconsolata;
+}
+
+.btnDeleteModal {
+    background-color: var(--confirmBtn);
+    border: 0;
+    color: var(--bgColor);
+    height: auto;
+    width: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: Inconsolata;
 }
 
 .userBioBox {
@@ -501,6 +513,20 @@ h1, h2, h3, h4, h5, h6, p, span, label, li {
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
     border-radius: 10px;
+  }
+
+  /*Edit form*/
+
+  .DeleteBtn {
+    background-color: var(--cancelBtn);
+    height: auto;
+    width: 350px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: var(--bgColor);
+    font-family: 'Inconsolata';
+    font-size: 22px;
   }
 
 /*Footer*/
