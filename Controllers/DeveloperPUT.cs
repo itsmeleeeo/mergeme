@@ -10,9 +10,8 @@ namespace MergeMe.Controllers
         public static string[] Method => new string[] { HttpMethod.Put.ToString() };
         public static Delegate Handler => Action;
 
-        public static IResult Action([FromRoute]int id, HttpContext http, DeveloperRequest developerRequest, ApplicationDbContext context)
+        public static IResult Action([FromRoute]int id, DeveloperRequest developerRequest, ApplicationDbContext context)
         {
-            var userId = http.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
             var developer = context.Developer.Where(c => c.Id == id).FirstOrDefault();
 
             if(developer == null)
