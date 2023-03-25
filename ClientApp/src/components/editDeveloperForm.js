@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 function EditProfile() {
     const id = sessionStorage.getItem('Id');
     const name = sessionStorage.getItem('name');
+    const user = JSON.parse(name)
+    const userId = user.status;
 
     const [stackData, setStackData] = useState({});
     const [firstName, setFirstname] = useState('');
@@ -13,11 +15,12 @@ function EditProfile() {
     const [stackTwo, setStackTwo] = useState('');
     const [stackThree, setStackThree] = useState('');
     const [userbio, setUserbio] = useState('');
-    const [profileImage, setProfileImage] = useState('');
+    const [profileImage, setProfileImage] = useState(''); 
+
     const nav = useNavigate();
 
     useEffect(() => {
-        let userName = JSON.parse(name)
+        const userName = JSON.parse(name)
 
         for(const item of userName.result) {
             if(item.type === 'FirstName') {
@@ -28,28 +31,61 @@ function EditProfile() {
             }
         }
         handleStackData();
-    }, [])
+        SelectedStack();
+        console.log(profileImage);
+    }, [profileImage], [name])
 
     const handleStackData = async () => {
         const resp = await fetch('https://localhost:7033/stack')
         const data = await resp.json()
         setStackData(data);
-        console.log(data)
-        return data
+        console.log(data);
     }
 
-    const handleSubmit = async (e, id) => {
+    const SelectedStack = () => {
+        let stackOneSelected = document.querySelector('.stackOneSelected');
+        const images = {
+            Angular: 'https://storage.cloud.google.com/mergeme/Angular-JS-01.png',
+            'C++': 'https://storage.cloud.google.com/mergeme/C%2B%2B-01.png',
+            C: 'https://storage.cloud.google.com/mergeme/C-01.png',
+            'C#': 'https://storage.cloud.google.com/mergeme/C-Sharp-01.png',
+            Clojure: 'https://storage.cloud.google.com/mergeme/Clojure-01.png',
+            Drupal: 'https://storage.cloud.google.com/mergeme/Drupal-Icon-01.png',
+            Electron: 'https://storage.cloud.google.com/mergeme/Electron-01.png',
+            Firebase: 'https://storage.cloud.google.com/mergeme/Firebase-02.png',
+            GraphQL: 'https://storage.cloud.google.com/mergeme/GraphQL-01.png',
+            Haskell: 'https://storage.cloud.google.com/mergeme/Haskell-logo-vector-01.png',
+            Ionic: 'https://storage.cloud.google.com/mergeme/Ionic-01.png',
+            JQuery: 'https://storage.cloud.google.com/mergeme/JQuery-01.png',
+            Java: 'https://storage.cloud.google.com/mergeme/Java-01.png',
+            JavaScript: 'https://storage.cloud.google.com/mergeme/JavaScript-01.png',
+            Kubernets: 'https://storage.cloud.google.com/mergeme/Kubernets-01.png',
+            '.Net': 'https://storage.cloud.google.com/mergeme/Kubernets-01.png',
+            NodeJs: 'https://storage.cloud.google.com/mergeme/Node-JS-01.png',
+            PHP: 'https://storage.cloud.google.com/mergeme/PHP-01.png',
+            Perl: 'https://storage.cloud.google.com/mergeme/Perl-01.png',
+            Python: 'https://storage.cloud.google.com/mergeme/Python-01.png',
+            R: 'https://storage.cloud.google.com/mergeme/R-Lang-01.png',
+            React: 'https://storage.cloud.google.com/mergeme/React-01.png',
+            Rust: 'https://storage.cloud.google.com/mergeme/Rust-01.png',
+            Typescript: 'https://storage.cloud.google.com/mergeme/Typescript-02.png',
+            Vue: 'https://storage.cloud.google.com/mergeme/Vue-JS-01.png'
+          };
+        
+        stackOneSelected.addEventListener('change', (e) => {
+            let selectedStack = e.target.value;
+
+            if (images[selectedStack]) {
+                setProfileImage(images[selectedStack]);
+              } else {
+                setProfileImage('');
+              }
+        })
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const firstName = "";
-        const lastName = "";
-        const position = "";
-        const stackOne = "";
-        const stackTwo = "";
-        const stackThree = "";
-        const userbio = "";
         const user = {
-            firstName,
-            lastName,
             position,
             stackOne,
             stackTwo,
@@ -57,7 +93,7 @@ function EditProfile() {
             userbio
         };
 
-        await fetch(`https://localhost:7033/developer/${id}`, {
+        await fetch(`https://localhost:7033/developer/${userId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -94,7 +130,7 @@ function EditProfile() {
                             <div>
                                 <label className="form-label">Select your first option</label>
                                 <div id="emailHelp" className="form-text">Choose the first language in which you are most proficient and it will be your profile picture</div>
-                                <select onChange={(e) => setStackOne(e.target.value)} className="form-select" aria-label="Default select example">
+                                <select onChange={(e) => setStackOne(e.target.value)} className="form-select stackOneSelected" aria-label="Default select example">
                                     {stackData && stackData.length > 0 && stackData.map((stack, i) => (
                                         <option key={i} value={stack.stackName}>{stack.stackName}</option>
                                     ))}

@@ -10,8 +10,12 @@ function CardProfile() {
     const [currentCompanyIndex, setCurrentCompanyIndex] = useState(0);
     const [recruiterStack, setRecruiterStack] = useState([]);
     const [show, setShow] = useState(false);
+    const [currentModalIndex, setCurrentModalIndex] = useState(null);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        setCurrentModalIndex(null);
+    }
     const handleShow = () => setShow(true);
 
     const fecthUsers = async () => {
@@ -30,7 +34,7 @@ function CardProfile() {
     const data = await fecthUsers();
     const stackdata = await fetchStacks();
     console.log(data)
-    setCompanyInfo(data, stackdata);
+    setCompanyInfo(data);
     }
 
     const handleStacks = async () => {
@@ -106,9 +110,8 @@ function CardProfile() {
                                                 </div>
                                                 <div className="dsp-flex">
                                                     <DislikeButton dislike={handleDislike} />
-                                                    <textarea readOnly className="userBioBox">{companyInfo.userbio}</textarea>
-                                                    {/* <button className="checkBio" onClick={handleShow}>Check Bio</button>
-                                                    <Modal show={show} onHide={handleClose} >
+                                                    <button className="checkBio" onClick={() => setCurrentModalIndex(i)}>Check Bio</button>
+                                                    <Modal show={currentModalIndex === i} onHide={handleClose} >
                                                         <Modal.Header closeButton>
                                                         <Modal.Title>{companyInfo.companyName}</Modal.Title>
                                                         </Modal.Header>
@@ -118,7 +121,7 @@ function CardProfile() {
                                                             Close
                                                         </button>
                                                         </Modal.Footer>
-                                                    </Modal> */}
+                                                    </Modal>
                                                     <LikeButton like={handleLike}/>
                                                 </div>
                                             </div>
