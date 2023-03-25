@@ -33,7 +33,7 @@ function EditProfile() {
         handleStackData();
         SelectedStack();
         console.log(profileImage);
-    }, [profileImage], [name])
+    }, [profileImage, name])
 
     const handleStackData = async () => {
         const resp = await fetch('https://localhost:7033/stack')
@@ -87,11 +87,11 @@ function EditProfile() {
         e.preventDefault();
         const user = {
             position,
-            stackOne,
-            stackTwo,
-            stackThree,
             userbio
         };
+
+        console.log(user.position);
+        console.log(user.userbio);
 
         await fetch(`https://localhost:7033/developer/${userId}`, {
             method: 'PUT',

@@ -10,7 +10,7 @@ namespace MergeMe.Model
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string position { get; set; }
+        public string Position { get; set; }
         public string ProfileImageUrl { get; set; }
         public string UserBio { get; set; }
 
@@ -29,8 +29,9 @@ namespace MergeMe.Model
             UserBio = userBio;
         }
 
-        public void EditInfo(string profileImg, string userbio)
+        public void EditInfo(string position, string profileImg, string userbio)
         {
+            Position = position;
             ProfileImageUrl = profileImg;
             UserBio = userbio;
         }
