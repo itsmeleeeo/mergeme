@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import DashboardDeveloper from "./DashboardDeveloper";
+import Footer from "./Footer";
 
 function EditProfile() {
     const id = sessionStorage.getItem('Id');
@@ -33,7 +36,7 @@ function EditProfile() {
         handleStackData();
         SelectedStack();
         console.log(profileImage);
-    }, [profileImage], [name])
+    }, [profileImage, name])
 
     const handleStackData = async () => {
         const resp = await fetch('https://localhost:7033/stack')
@@ -87,10 +90,8 @@ function EditProfile() {
         e.preventDefault();
         const user = {
             position,
-            stackOne,
-            stackTwo,
-            stackThree,
-            userbio
+            userbio,
+            profileImage
         };
 
         await fetch(`https://localhost:7033/developer/${userId}`, {
@@ -98,7 +99,11 @@ function EditProfile() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify({
+                position: user.position,
+                userbio: user.userbio,
+                profileImage: profileImage
+            })
         }).then((resp) => resp.json())
             .then((user) => {
                 console.log('Success:', user);
@@ -158,10 +163,14 @@ function EditProfile() {
                             </div>
                             <div className="dsp-around mt-10 mb-30">
                                 <input type="submit" value="Update" className="devSubmitForm" onClick={(e) => handleSubmit(e, id)}/>
+                                <Link to="/dashboard/developer">
+                                    <button className="goBackBtn">Back to Dashboard</button>
+                                </Link>
                                 <input type="reset" value="Clear" className="clearForm" />
                             </div>
                         </form>
                     </div>
+                    <Footer />
                 </div>
             </div>
         </div>
