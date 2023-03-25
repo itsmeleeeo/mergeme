@@ -493,6 +493,19 @@ h1, h2, h3, h4, h5, h6, p, span, label, li {
     padding: 5px;
 }
 
+.goBackBtn {
+    background-color: var(--btnLogin);
+    color: var(--bgColor);
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: Inconsolata;
+    font-size: 22px;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
