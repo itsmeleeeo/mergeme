@@ -10,7 +10,16 @@ namespace MergeMe.Controllers
         public static Delegate Handler => Action;
 
         public static IResult Action([FromRoute] int id, StackRequest stackRequest, ApplicationDbContext context) {
-            var stack = context.DeveloperStack.Where(s => s.Id == id);
+            var stack = context.DeveloperStack.Where(s => s.Id == id).FirstOrDefault();
+            
+            if(stack == null)
+            {
+                return Results.BadRequest();
+            }
+
+            stack.EditStack(stackRequest.stackOne, stackRequest.stackTwo, stackRequest.stackThree, stackRequest.id);
+            
+            context.SaveChanges();
 
             return Results.Ok();
         }

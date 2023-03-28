@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import DashboardDeveloper from "./DashboardDeveloper";
 import Footer from "./Footer";
 
 function EditProfile() {
@@ -88,7 +87,9 @@ function EditProfile() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const user = {
+        handleStacks();
+        
+        const editUser = {
             position,
             userbio,
             profileImage
@@ -99,19 +100,48 @@ function EditProfile() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                position: user.position,
-                userbio: user.userbio,
-                profileImage: profileImage
-            })
+            body: JSON.stringify(editUser)
         }).then((resp) => resp.json())
             .then((user) => {
                 console.log('Success:', user);
-                nav('/')
+                console.log('Success:',position);
+                console.log('Success:',userbio);
+                console.log('Success:',profileImage);
+                nav(-1)
             }).catch((err) => {
-                console.warn(`Something went wrong ${err}`)
-                console.error('Error:', err);
+                console.log(position);
+                console.log(userbio);
+                console.log(profileImage);
+                console.log(`Something went wrong ${err}`)
             });
+    }
+
+    const handleStacks = async () => {
+        const userStack = {
+            stackOne,
+            stackTwo,
+            stackThree
+        };
+
+        await fetch(`https://localhost:7033/stack/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(userStack)
+        }).then((resp) => resp.json())
+        .then((user) => {
+            console.log('Success: ', user);
+            console.log('Success: ',stackOne);
+            console.log('Success: ',stackTwo);
+            console.log('Success: ',stackThree);
+        }).catch((err) => {
+            console.error(`Something went wrong ${err}`)
+            
+            console.log(stackOne);
+            console.log(stackTwo);
+            console.log(stackThree);
+        })
     }
 
     return(
@@ -119,7 +149,7 @@ function EditProfile() {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
-                        <form>
+                        <form onSubmit={(e) => handleSubmit(e)}>
                             <div>
                                 <label className="form-label">Enter your first name</label>
                                 <input type="text" className="form-control" value={firstName} readOnly />
@@ -162,7 +192,7 @@ function EditProfile() {
                                 <textarea className="form-control" placeholder="Leave a comment here" value={userbio} onChange={(e) => setUserbio(e.target.value)}></textarea>
                             </div>
                             <div className="dsp-around mt-10 mb-30">
-                                <input type="submit" value="Update" className="devSubmitForm" onClick={(e) => handleSubmit(e, id)}/>
+                                <input type="submit" value="Update" className="devSubmitForm" />
                                 <Link to="/dashboard/developer">
                                     <button className="goBackBtn">Back to Dashboard</button>
                                 </Link>
