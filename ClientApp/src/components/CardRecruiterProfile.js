@@ -113,7 +113,7 @@ function CardProfile() {
                                                     <button className="checkBio" onClick={() => setCurrentModalIndex(i)}>Check Bio</button>
                                                     <Modal show={currentModalIndex === i} onHide={handleClose} >
                                                         <Modal.Header closeButton>
-                                                        <Modal.Title>{developerInfo.companyName}</Modal.Title>
+                                                        <Modal.Title>{developerInfo.firstName}</Modal.Title>
                                                         </Modal.Header>
                                                         <Modal.Body>{developerInfo.userBio}</Modal.Body>
                                                         <Modal.Footer>
