@@ -3,14 +3,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MergeMe.Controllers
 {
-    public class StackDeveloperPUT {
-        public static string Template => "/stack/{id:int}";
-        public static string[] Method => new string[] {HttpMethod.Put.ToString()};
-
+    public class StackDeveloperPUT 
+    {
+        public static string Template => "/developerstacks/{id:int}";
+        public static string[] Method => new string[] { HttpMethod.Put.ToString() };
         public static Delegate Handler => Action;
 
-        public static IResult Action([FromRoute] int id, StackRequest stackRequest, ApplicationDbContext context) {
-            var stack = context.DeveloperStack.Where(s => s.Id == id);
+        public static IResult Action([FromRoute] int id, StackRequest stackRequest, ApplicationDbContext context) 
+        {
+            var developer = context.Developer.FirstOrDefault(d => d.Id == id);
+            var stack = context.DeveloperStack.FirstOrDefault(s => s.developers.Id == developer.Id);
+
+            var editedStack = stack.developers.Id;
+
+            if(stack == null)
+            {
+                return Results.BadRequest();
+            }
+            
+            stack.EditStack(stackRequest.stackOne, stackRequest.stackTwo, stackRequest.stackThree, editedStack);
+
+            context.SaveChanges();
 
             return Results.Ok();
         }

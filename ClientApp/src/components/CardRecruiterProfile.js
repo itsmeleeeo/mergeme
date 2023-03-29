@@ -1,32 +1,60 @@
 import React, { useEffect, useState } from 'react'
 import LikeButton from './LikeButton'
 import DislikeButton from './DislikeButton'
+import Modal from 'react-bootstrap/Modal';
 
 function CardProfile() {
+
+    const [developerInfo, setdeveloperInfo] = useState([]);
+    const [like, setLike] = useState([]);
+    const [currentDeveloperIndex, setcurrentDeveloperIndex] = useState(0);
+    const [developerStack, setdeveloperStack] = useState([]);
+    const [show, setShow] = useState(false);
+    const [currentModalIndex, setCurrentModalIndex] = useState(null);
+
+    const handleClose = () => {
+        setShow(false);
+        setCurrentModalIndex(null);
+    }
+    const handleShow = () => setShow(true);
 
     const fecthUsers = async () => {
         const resp = await fetch('https://localhost:7033/dashboard/recruiter');
         const data = await resp.json();
         return data;
     }
+
+    const fetchStacks = async () => {
+        const resp = await fetch('https://localhost:7033/developerstack');
+        const data = await resp.json();
+        return data;
+    }
     
     const handleRecruitersData = async () => {
     const data = await fecthUsers();
+    const stackdata = await fetchStacks();
     console.log(data)
-    setCompanyInfo(data);
-}
+    setdeveloperInfo(data);
+    }
+
+    const handleStacks = async () => {
+        const stackdata = await fetchStacks();
+        setdeveloperStack(stackdata);
+        console.log(stackdata);
+    }
 
     const handleDislike = async () => {
         const user = await fecthUsers();
-        let i = user.findIndex((user) => user.id === currentUserId)
+        let i = user.findIndex((user) => user.id === developerInfo[currentDeveloperIndex].id)
         let currentUser  = user[i];
-        user.splice(currentUser);
+        user.splice(i, 1);
         handleCardRemove(currentUser.id);
+        setcurrentDeveloperIndex(currentDeveloperIndex + 1)
     }
 
     const handleLike = async () => {
         const user = await fecthUsers();
-        let i = user.findIndex((user) => user.id === currentUserId)
+        let i = user.findIndex((user) => user.id === developerInfo[currentDeveloperIndex].id)
         let currentUser  = user[i];
         let nextUser = user[i + 1];
 
@@ -34,7 +62,7 @@ function CardProfile() {
             const waitForLike = like.includes(nextUser.id);
             
             if(waitForLike) {
-                console.log(`A company is interested on you`)
+                console.log(`A Developer is interested on you`)
             }
         }
 
@@ -42,6 +70,7 @@ function CardProfile() {
         setLike((previousLike) => [...previousLike, currentUser.id])
         console.log(currentUser)
         handleCardRemove(currentUser.id);
+        setcurrentDeveloperIndex(currentDeveloperIndex + 1)
     }
 
     const handleCardRemove = (userId) => {
@@ -49,13 +78,10 @@ function CardProfile() {
         removedUser.remove()
         console.log(`${userId} removed`)
     }
-
-    const [companyInfo, setCompanyInfo] = useState([]);
-    const [like, setLike] = useState([]);
-    const currentUserId = companyInfo.length > 0 ? companyInfo[0].id : null
     
     useEffect(() => {
         handleRecruitersData();
+        handleStacks();
     }, [])
 
     return (
@@ -64,28 +90,38 @@ function CardProfile() {
                 <div className="row">
                     <div className="col-lg-12">
                         {
-                            companyInfo.length > 0 ? (
-                                <div>
+                            developerInfo.length > 0 ? (
+                                <div className="cardHolder">
                                     {
-                                        companyInfo.map(companyInfo => {
-                                           return <div className="card mt-30" key={companyInfo.id}>
+                                        developerInfo.map((developerInfo, i) => {
+                                           return <div className="card mt-30" key={i}>
                                                 <div className="frame">
-                                                    <img className="imgCard" src={companyInfo.profileImageUrl} alt="user" />
-                                                </div>
-                                                <div className="username mt-10 dsp-flex-start">
-                                                    <p className="username">{companyInfo.companyName}</p>
-                                                </div>
-                                                <div className="bioBox mb-30">
-                                                    <p className="username">Stacks:</p>
-                                                    <ul className="stackInfo">
-                                                        <li>stackOne</li>
-                                                        <li>stackTwo</li>
-                                                        <li>stackThree</li>
-                                                    </ul>
-                                                    <p className="username">{companyInfo.userbio}</p>
+                                                    <img className="imgCard" src={developerInfo.profileImageUrl} alt="user" />
+                                                    <p className="username">{developerInfo.firstName}</p> 
+                                                    {
+                                                        developerStack.slice(i, i + 1).map((developerStack, j) => {
+                                                            return <div className="stackInfo" id={j} key={j}>
+                                                                <span>{developerStack.stackOne}</span>
+                                                                <span>{developerStack.stackTwo}</span>
+                                                                <span>{developerStack.stackThree}</span>
+                                                            </div>
+                                                        })
+                                                    }
                                                 </div>
                                                 <div className="dsp-flex">
                                                     <DislikeButton dislike={handleDislike} />
+                                                    <button className="checkBio" onClick={() => setCurrentModalIndex(i)}>Check Bio</button>
+                                                    <Modal show={currentModalIndex === i} onHide={handleClose} >
+                                                        <Modal.Header closeButton>
+                                                        <Modal.Title>{developerInfo.firstName}</Modal.Title>
+                                                        </Modal.Header>
+                                                        <Modal.Body>{developerInfo.userBio}</Modal.Body>
+                                                        <Modal.Footer>
+                                                        <button className="btnCloseModal" onClick={handleClose}>
+                                                            Close
+                                                        </button>
+                                                        </Modal.Footer>
+                                                    </Modal>
                                                     <LikeButton like={handleLike}/>
                                                 </div>
                                             </div>

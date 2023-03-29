@@ -3,7 +3,8 @@ import Login from "./components/Login";
 import { Home } from "./components/Home";
 import DashboardDeveloper from './components/DashboardDeveloper'
 import DashboardRecruiter from './components/DashboardRecruiter'
-import EditProfile from "./components/editDeveloperForm";
+import EditDeveloperProfile from "./components/editDeveloperForm";
+import EditRecruiterProfile from "./components/editRecruiterForm";
 
 const AppRoutes = [
   {
@@ -28,7 +29,11 @@ const AppRoutes = [
   },
   {
     path: '/edit',
-    element: <EditProfile />
+    element: <EditDeveloperProfile />
+  },
+  {
+    path: '/edit',
+    element: <EditRecruiterProfile />
   }
 ];
 

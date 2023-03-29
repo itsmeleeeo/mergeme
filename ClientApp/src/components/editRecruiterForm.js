@@ -129,12 +129,8 @@ function EditProfile() {
                 <div className="col-lg-12">
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <label className="form-label">Enter your first name</label>
+                            <label className="form-label">Company Name</label>
                             <input type="text" className="form-control" value={firstName} readOnly />
-                        </div>
-                        <div>
-                            <label className="form-label">Enter your last name</label>
-                            <input type="text" className="form-control" value={lastName} readOnly />
                         </div>
                         <div>
                             <label className="form-label">Enter your position</label>
