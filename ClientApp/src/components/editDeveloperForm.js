@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Footer from "./Footer";
 
 function EditProfile() {
-    const id = sessionStorage.getItem('Id');
     const name = sessionStorage.getItem('name');
     const user = JSON.parse(name)
     const userId = user.status;
@@ -17,7 +16,7 @@ function EditProfile() {
     const [stackTwo, setStackTwo] = useState('');
     const [stackThree, setStackThree] = useState('');
     const [userbio, setUserbio] = useState('');
-    const [profileImage, setProfileImage] = useState(''); 
+    const [profileImageUrl, setProfileImageUrl] = useState(''); 
 
     const nav = useNavigate();
 
@@ -32,10 +31,11 @@ function EditProfile() {
                 break;
             }
         }
+    
         handleStackData();
         SelectedStack();
-        console.log(profileImage);
-    }, [profileImage, name])
+        console.log(profileImageUrl);
+    }, [profileImageUrl, name])
 
     const handleStackData = async () => {
         const resp = await fetch('https://localhost:7033/stack')
@@ -62,7 +62,7 @@ function EditProfile() {
             Java: 'https://storage.cloud.google.com/mergeme/Java-01.png',
             JavaScript: 'https://storage.cloud.google.com/mergeme/JavaScript-01.png',
             Kubernets: 'https://storage.cloud.google.com/mergeme/Kubernets-01.png',
-            '.Net': 'https://storage.cloud.google.com/mergeme/Kubernets-01.png',
+            '.Net': 'https://storage.cloud.google.com/mergeme/Microsoft-Dotnet-01.png',
             NodeJs: 'https://storage.cloud.google.com/mergeme/Node-JS-01.png',
             PHP: 'https://storage.cloud.google.com/mergeme/PHP-01.png',
             Perl: 'https://storage.cloud.google.com/mergeme/Perl-01.png',
@@ -78,43 +78,82 @@ function EditProfile() {
             let selectedStack = e.target.value;
 
             if (images[selectedStack]) {
-                setProfileImage(images[selectedStack]);
+               setProfileImageUrl(images[selectedStack]);
               } else {
-                setProfileImage('');
+                setProfileImageUrl('');
               }
         })
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        handleStacks();
-        
+
         const editUser = {
+            firstName,
+            lastName,
             position,
-            userbio,
-            profileImage
+            profileImageUrl,
+            userbio
+        };
+
+        const userStack = {
+            stackOne,
+            stackTwo,
+            stackThree
         };
 
         await fetch(`https://localhost:7033/developer/${userId}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
-            },
+                'Content-Type': 'application/json' },
             body: JSON.stringify(editUser)
         }).then((resp) => resp.json())
-            .then((user) => {
-                console.log('Success:', user);
-                console.log('Success:',position);
-                console.log('Success:',userbio);
-                console.log('Success:',profileImage);
+            .then((editUser) => {
+                console.log('Success:', editUser);
                 nav(-1)
             }).catch((err) => {
-                console.log(position);
-                console.log(userbio);
-                console.log(profileImage);
-                console.log(`Something went wrong ${err}`)
+                alert(`Something went wrong ${err}`)
+                console.error('Error:', err);
             });
     }
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     handleStacks();
+    //     SelectedStack();
+
+    //     let devPosition = position;
+    //     let devBio = userbio;
+    //     let devProfile = profileImage;
+        
+    //     const editUser = {
+    //         devPosition,
+    //         devBio,
+    //         devProfile
+    //     };
+
+    //     await fetch(`https://localhost:7033/developer/${userId}`, {
+    //         method: 'PUT',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(editUser)
+    //     }).then((resp) => resp.json())
+    //         .then((user) => {
+    //             console.warn('deu bom' + editUser.devProfile)
+    //             console.log('Success:', user);
+    //             console.log('Success:' + devPosition);
+    //             console.log('Success:' + devBio);
+    //             console.log('Success:' + devProfile);
+    //             nav(-1)
+    //         }).catch((err) => {
+    //             console.warn('deu ruim' + editUser.devProfile)
+    //             console.log(devPosition);
+    //             console.log(devBio);
+    //             console.log(devProfile);
+    //             console.log(`Something went wrong ${err}`)
+    //         });
+    // }
 
     const handleStacks = async () => {
         const userStack = {
@@ -145,63 +184,61 @@ function EditProfile() {
     }
 
     return(
-        <div>
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-12">
-                        <form onSubmit={(e) => handleSubmit(e)}>
-                            <div>
-                                <label className="form-label">Enter your first name</label>
-                                <input type="text" className="form-control" value={firstName} readOnly />
-                            </div>
-                            <div>
-                                <label className="form-label">Enter your last name</label>
-                                <input type="text" className="form-control" value={lastName} readOnly />
-                            </div>
-                            <div>
-                                <label className="form-label">Enter your position</label>
-                                <input type="text" placeholder="eg.Full-Stack Developer" className="form-control" value={position} onChange={(e) => setPosition(e.target.value)} required />
-                            </div>
-                            <div>
-                                <label className="form-label">Select your first option</label>
-                                <div id="emailHelp" className="form-text">Choose the first language in which you are most proficient and it will be your profile picture</div>
-                                <select onChange={(e) => setStackOne(e.target.value)} className="form-select stackOneSelected" aria-label="Default select example">
-                                    {stackData && stackData.length > 0 && stackData.map((stack, i) => (
-                                        <option key={i} value={stack.stackName}>{stack.stackName}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div>
-                                <label className="form-label">Select your second option</label>
-                                <select onChange={(e) => setStackTwo(e.target.value)} className="form-select" aria-label="Default select example">
-                                    {stackData && stackData.length > 0 && stackData.map((stack, i) => (
-                                        <option key={i} value={stack.stackName}>{stack.stackName}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div>
-                                <label className="form-label">Select your third option</label>
-                                <select onChange={(e) => setStackThree(e.target.value)} className="form-select" aria-label="Default select example">
-                                    {stackData && stackData.length > 0 && stackData.map((stack, i) => (
-                                        <option key={i} value={stack.stackName}>{stack.stackName}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div>
-                                <label className="form-label">Type your bio</label>
-                                <textarea className="form-control" placeholder="Leave a comment here" value={userbio} onChange={(e) => setUserbio(e.target.value)}></textarea>
-                            </div>
-                            <div className="dsp-around mt-10 mb-30">
-                                <input type="submit" value="Update" className="devSubmitForm" />
-                                <Link to="/dashboard/developer">
-                                    <button className="goBackBtn">Back to Dashboard</button>
-                                </Link>
-                                <input type="reset" value="Clear" className="clearForm" />
-                            </div>
-                        </form>
-                    </div>
-                    <Footer />
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-12">
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label className="form-label">Enter your first name</label>
+                            <input type="text" className="form-control" value={firstName} readOnly />
+                        </div>
+                        <div>
+                            <label className="form-label">Enter your last name</label>
+                            <input type="text" className="form-control" value={lastName} readOnly />
+                        </div>
+                        <div>
+                            <label className="form-label">Enter your position</label>
+                            <input type="text" placeholder="eg.Full-Stack Developer" className="form-control" value={position} onChange={(e) => setPosition(e.target.value)} required />
+                        </div>
+                        <div>
+                            <label className="form-label">Select your first option</label>
+                            <div id="emailHelp" className="form-text">Choose the first language in which you are most proficient and it will be your profile picture</div>
+                            <select onChange={(e) => setStackOne(e.target.value)} className="form-select stackOneSelected" aria-label="Default select example">
+                                {stackData && stackData.length > 0 && stackData.map((stack, i) => (
+                                    <option key={i} value={stack.stackName}>{stack.stackName}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="form-label">Select your second option</label>
+                            <select onChange={(e) => setStackTwo(e.target.value)} className="form-select" aria-label="Default select example">
+                                {stackData && stackData.length > 0 && stackData.map((stack, i) => (
+                                    <option key={i} value={stack.stackName}>{stack.stackName}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="form-label">Select your third option</label>
+                            <select onChange={(e) => setStackThree(e.target.value)} className="form-select" aria-label="Default select example">
+                                {stackData && stackData.length > 0 && stackData.map((stack, i) => (
+                                    <option key={i} value={stack.stackName}>{stack.stackName}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="form-label">Type your bio</label>
+                            <textarea className="form-control" placeholder="Leave a comment here" value={userbio} onChange={(e) => setUserbio(e.target.value)}></textarea>
+                        </div>
+                        <div className="dsp-around mt-10 mb-30">
+                            <input type="submit" value="Update" className="devSubmitForm" />
+                            <Link to="/dashboard/developer">
+                                <button className="goBackBtn">Back to Dashboard</button>
+                            </Link>
+                            <input type="reset" value="Clear" className="clearForm" />
+                        </div>
+                    </form>
                 </div>
+                <Footer />
             </div>
         </div>
     )

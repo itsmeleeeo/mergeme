@@ -1,6 +1,5 @@
 ﻿using MergeMe.Model;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace MergeMe.Controllers
 {
@@ -12,14 +11,14 @@ namespace MergeMe.Controllers
 
         public static IResult Action([FromRoute]int id, DeveloperRequest developerRequest, ApplicationDbContext context)
         {
-            var developer = context.Developer.Where(c => c.Id == id).FirstOrDefault();
+            var developer = context.Developer.FirstOrDefault(c => c.Id == id);
 
             if(developer == null)
             {
                 return Results.BadRequest();
             }
 
-           developer.EditInfo(developerRequest.position, developerRequest.profileImageUrl, developerRequest.userBio);
+           developer.EditInfo(developerRequest.firstName, developerRequest.lastName, developerRequest.position, developerRequest.profileImageUrl, developerRequest.userBio);
             if(!developer.IsValid)
             {
                 return Results.BadRequest();

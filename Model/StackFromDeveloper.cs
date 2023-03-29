@@ -10,10 +10,10 @@
         public Stacks stacks { get; set; }
 
         public void EditStack(string stackOne, string stackTwo, string stackThree, int developerId) {
-            StackOne = stackOne;
-            StackTwo = stackTwo;
-            StackThree = stackThree;
-            developers.Id = developerId;
+            this.StackOne = stackOne;
+            this.StackTwo = stackTwo;
+            this.StackThree = stackThree;
+            this.developers.Id = developerId;
         }
     }
 }

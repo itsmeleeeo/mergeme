@@ -29,11 +29,13 @@ namespace MergeMe.Model
             UserBio = userBio;
         }
 
-        public void EditInfo(string position, string profileImg, string userbio)
+        public void EditInfo(string firstName, string lastName, string position, string profileImageUrl, string userbio)
         {
-            Position = position;
-            ProfileImageUrl = profileImg;
-            UserBio = userbio;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Position = position;
+            this.ProfileImageUrl = profileImageUrl;
+            this.UserBio = userbio;
         }
 
     }
