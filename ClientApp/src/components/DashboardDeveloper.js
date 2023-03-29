@@ -30,7 +30,7 @@ function DashboardDeveloper() {
                         </Link>
                     </div>
                     {
-                        (acctype == 'CompanyName') ? (<CardRecProfile />) : (<CardDevProfile />)
+                        (acctype === 'CompanyName') ? (<CardRecProfile />) : (<CardDevProfile />)
                     }
                 </div>
             </div>
