@@ -13,12 +13,12 @@ namespace MergeMe.Controllers
         public static string[] Method => new string[] { HttpMethod.Post.ToString() };
         public static Delegate Handler => Action;
 
-        public static IResult Action(LoginRequest loginRequest, IConfiguration configuration , UserManager<IdentityUser> userManager)
+        public static IResult Action(LoginRequest loginRequest, IConfiguration configuration , UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
             var user = userManager.FindByEmailAsync(loginRequest.email).Result;
             var userInfo = userManager.GetClaimsAsync(user);
 
-            if(user == null)
+            if (user == null)
             {
                 return Results.BadRequest();
             }

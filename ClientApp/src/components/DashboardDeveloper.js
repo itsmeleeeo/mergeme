@@ -1,11 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import CardProfile from '../components/CardDeveloperProfile'
+import CardDevProfile from '../components/CardDeveloperProfile'
 import EditButton from './editButton';
 import Footer from './Footer'
 
 
 function DashboardDeveloper() {
+
+    const name = sessionStorage.getItem('name');
+    const user = JSON.parse(name)
+
+    for(const item of user.result) {
+        if(item.type === 'CompanyName') {
+            console.log(item.value);
+        }
+    }
 
     return (
         <div className="container">
@@ -16,7 +25,7 @@ function DashboardDeveloper() {
                             <EditButton />
                         </Link>
                     </div>
-                    <CardProfile />
+                    <CardDevProfile />
                 </div>
             </div>
             <Footer />

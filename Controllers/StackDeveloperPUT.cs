@@ -11,14 +11,17 @@ namespace MergeMe.Controllers
 
         public static IResult Action([FromRoute] int id, StackRequest stackRequest, ApplicationDbContext context) 
         {
-            var stack = context.DeveloperStack.FirstOrDefault(s => s.developers.Id == id);
-            
+            var developer = context.Developer.FirstOrDefault(d => d.Id == id);
+            var stack = context.DeveloperStack.FirstOrDefault(s => s.developers.Id == developer.Id);
+
+            var editedStack = stack.developers.Id;
+
             if(stack == null)
             {
                 return Results.BadRequest();
             }
             
-            stack.EditStack(stackRequest.stackOne, stackRequest.stackTwo, stackRequest.stackThree, stackRequest.developerId);
+            stack.EditStack(stackRequest.stackOne, stackRequest.stackTwo, stackRequest.stackThree, editedStack);
 
             context.SaveChanges();
 

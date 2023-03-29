@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import Footer from "./Footer";
 
 function EditProfile() {
@@ -17,8 +16,6 @@ function EditProfile() {
     const [stackThree, setStackThree] = useState('');
     const [userbio, setUserbio] = useState('');
     const [profileImageUrl, setProfileImageUrl] = useState(''); 
-
-    const nav = useNavigate();
 
     useEffect(() => {
         const userName = JSON.parse(name)
@@ -85,8 +82,7 @@ function EditProfile() {
         })
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
 
         const editUser = {
             firstName,
@@ -110,77 +106,21 @@ function EditProfile() {
         }).then((resp) => resp.json())
             .then((editUser) => {
                 console.log('Success:', editUser);
-                nav(-1)
             }).catch((err) => {
-                alert(`Something went wrong ${err}`)
                 console.error('Error:', err);
             });
-    }
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     handleStacks();
-    //     SelectedStack();
-
-    //     let devPosition = position;
-    //     let devBio = userbio;
-    //     let devProfile = profileImage;
-        
-    //     const editUser = {
-    //         devPosition,
-    //         devBio,
-    //         devProfile
-    //     };
-
-    //     await fetch(`https://localhost:7033/developer/${userId}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(editUser)
-    //     }).then((resp) => resp.json())
-    //         .then((user) => {
-    //             console.warn('deu bom' + editUser.devProfile)
-    //             console.log('Success:', user);
-    //             console.log('Success:' + devPosition);
-    //             console.log('Success:' + devBio);
-    //             console.log('Success:' + devProfile);
-    //             nav(-1)
-    //         }).catch((err) => {
-    //             console.warn('deu ruim' + editUser.devProfile)
-    //             console.log(devPosition);
-    //             console.log(devBio);
-    //             console.log(devProfile);
-    //             console.log(`Something went wrong ${err}`)
-    //         });
-    // }
-
-    const handleStacks = async () => {
-        const userStack = {
-            stackOne,
-            stackTwo,
-            stackThree
-        };
-
-        await fetch(`https://localhost:7033/stack/${userId}`, {
+        await fetch(`https://localhost:7033/developerstacks/${userId}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify(userStack)
+                'Content-Type': 'application/json' },
+            body: JSON.stringify(userStack)
         }).then((resp) => resp.json())
-        .then((user) => {
-            console.log('Success: ', user);
-            console.log('Success: ',stackOne);
-            console.log('Success: ',stackTwo);
-            console.log('Success: ',stackThree);
-        }).catch((err) => {
-            console.error(`Something went wrong ${err}`)
-            
-            console.log(stackOne);
-            console.log(stackTwo);
-            console.log(stackThree);
-        })
+            .then((userStack) => {
+                console.log('Success:', userStack);
+            }).catch((err) => {
+                console.error('Error:', err);
+        });
     }
 
     return(
