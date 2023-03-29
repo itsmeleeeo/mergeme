@@ -12,7 +12,11 @@ namespace MergeMe.Controllers
         public static IResult Action(ApplicationDbContext context)
         {
             var developer = context.Developer.ToList();
-            var response = developer.Select(d => new DeveloperResponse { FirstName = d.FirstName + " " + d.LastName  });
+            var response = developer.Select(d => new DeveloperResponse { FirstName = d.FirstName + " " + d.LastName, 
+                ProfileImageUrl = d.ProfileImageUrl, 
+                UserBio = d.UserBio, 
+                Position = d.Position  
+            });
 
             return Results.Ok(response);
         }

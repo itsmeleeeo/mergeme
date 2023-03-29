@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import CardDevProfile from '../components/CardDeveloperProfile'
+import CardRecProfile from './CardRecruiterProfile';
 import EditButton from './editButton';
 import Footer from './Footer'
 
 
 function DashboardDeveloper() {
+    
+    const [acctype , setAccType] = useState('');
+    useEffect(() => {
+        const name = sessionStorage.getItem('name');
+        const user = JSON.parse(name)
 
-    const name = sessionStorage.getItem('name');
-    const user = JSON.parse(name)
-
-    for(const item of user.result) {
-        if(item.type === 'CompanyName') {
-            console.log(item.value);
+        for(const item of user.result) {
+            if(item.type === 'CompanyName') {
+                setAccType(item.type);
+            }
         }
-    }
+    }, []);
 
     return (
         <div className="container">
@@ -25,7 +29,9 @@ function DashboardDeveloper() {
                             <EditButton />
                         </Link>
                     </div>
-                    <CardDevProfile />
+                    {
+                        (acctype == 'CompanyName') ? (<CardRecProfile />) : (<CardDevProfile />)
+                    }
                 </div>
             </div>
             <Footer />

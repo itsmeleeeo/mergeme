@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import LikeButton from './LikeButton'
 import DislikeButton from './DislikeButton'
+import Modal from 'react-bootstrap/Modal';
 
 function CardProfile() {
 
@@ -93,10 +94,10 @@ function CardProfile() {
                                 <div className="cardHolder">
                                     {
                                         developerInfo.map((developerInfo, i) => {
-                                           return <div className="card mt-30" key={developerInfo.id}>
+                                           return <div className="card mt-30" key={i}>
                                                 <div className="frame">
                                                     <img className="imgCard" src={developerInfo.profileImageUrl} alt="user" />
-                                                    <p className="username">{developerInfo.companyName}</p> 
+                                                    <p className="username">{developerInfo.firstName}</p> 
                                                     {
                                                         developerStack.slice(i, i + 1).map((developerStack, j) => {
                                                             return <div className="stackInfo" id={j} key={j}>
@@ -114,7 +115,7 @@ function CardProfile() {
                                                         <Modal.Header closeButton>
                                                         <Modal.Title>{developerInfo.companyName}</Modal.Title>
                                                         </Modal.Header>
-                                                        <Modal.Body>{developerInfo.userbio}</Modal.Body>
+                                                        <Modal.Body>{developerInfo.userBio}</Modal.Body>
                                                         <Modal.Footer>
                                                         <button className="btnCloseModal" onClick={handleClose}>
                                                             Close
