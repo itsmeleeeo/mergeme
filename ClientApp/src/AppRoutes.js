@@ -28,11 +28,11 @@ const AppRoutes = [
       element: <DashboardRecruiter />
   },
   {
-    path: '/edit',
+    path: '/editdev',
     element: <EditDeveloperProfile />
   },
   {
-    path: '/edit',
+    path: '/editrec',
     element: <EditRecruiterProfile />
   }
 ];

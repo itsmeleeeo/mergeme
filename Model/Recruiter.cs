@@ -6,8 +6,7 @@ namespace MergeMe.Model
     public class Recruiter : Notifiable<Notification>
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string CompanyName { get; set;}
         public string Email { get; set; }
         public string Password { get; set; }
         public string ProfileImageUrl { get; set; }
@@ -15,15 +14,13 @@ namespace MergeMe.Model
 
         public List<StackFromRecruiter> stackFromRecruiter { get; set; }
 
-        public Recruiter(int id,string firstName, string lastName, string email, string password, string profileImageUrl, string userBio)
+        public Recruiter(int id,string companyName, string email, string password, string profileImageUrl, string userBio)
         {
             var contract = new Contract<Recruiter>()
-                .IsNotNullOrEmpty(firstName, "FirstName")
-                .IsNotNullOrEmpty(lastName, "LastName");
+                .IsNotNullOrEmpty(companyName, "CompanyName");
             AddNotifications(contract);
             Id = id;
-            FirstName = firstName;
-            LastName = lastName;
+            CompanyName = companyName;
             Email = email;
             Password = password;
             ProfileImageUrl = profileImageUrl;

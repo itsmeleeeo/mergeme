@@ -25,12 +25,12 @@ function DashboardDeveloper() {
             <div className="row">
                 <div className="col-lg-12">
                     <div className="dsp-flex mt-30 mb-30">
-                        <Link to="/edit">
-                            <EditButton />
-                        </Link>
+                    {
+                        (acctype === 'CompanyName') ? (<Link to="/editrec"><EditButton /></Link>) : (<Link to="/editdev"><EditButton /></Link>)
+                    }
                     </div>
                     {
-                        (acctype == 'CompanyName') ? (<CardRecProfile />) : (<CardDevProfile />)
+                        (acctype === 'CompanyName') ? (<CardRecProfile />) : (<CardDevProfile />)
                     }
                 </div>
             </div>
