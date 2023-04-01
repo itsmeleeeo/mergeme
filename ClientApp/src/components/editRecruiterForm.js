@@ -78,9 +78,9 @@ function EditProfile() {
         })
     }
 
-    const handleSubmit = async () => {
-
-        const editUser = {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const editRecruiter = {
             companyName,
             profileImageUrl,
             userbio
@@ -92,19 +92,19 @@ function EditProfile() {
             stackThree
         };
 
-        await fetch(`https://localhost:7033/developer/${userId}`, {
+        await fetch(`https://localhost:7033/recruiter/${userId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json' },
-            body: JSON.stringify(editUser)
+            body: JSON.stringify(editRecruiter)
         }).then((resp) => resp.json())
-            .then((editUser) => {
-                console.log('Success:', editUser);
+            .then((editRecruiter) => {
+                console.log('Success:', editRecruiter);
             }).catch((err) => {
                 console.error('Error:', err);
             });
 
-        await fetch(`https://localhost:7033/developerstacks/${userId}`, {
+        await fetch(`https://localhost:7033/recruiterstacks/${userId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json' },

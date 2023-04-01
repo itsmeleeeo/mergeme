@@ -8,5 +8,15 @@
         public string StackThree { get; set; }
         public Recruiter recruiters { get; set; }
         public Stacks stacks { get; set; }
+
+        
+
+        public void EditStack(string stackOne, string stackTwo, string stackThree, int recruiterId)
+        {
+            this.StackOne = stackOne;
+            this.StackTwo = stackTwo;
+            this.StackThree = stackThree;
+            this.recruiters.Id = recruiterId;
+        }
     }
 }
