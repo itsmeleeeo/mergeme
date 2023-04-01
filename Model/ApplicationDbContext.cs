@@ -27,7 +27,6 @@ namespace MergeMe.Model
 
             builder.Entity<Recruiter>().Property(p => p.CompanyName).IsRequired();
             builder.Entity<Recruiter>().Property(p => p.Email).IsRequired();
-            builder.Entity<Recruiter>().Property(p => p.Password).IsRequired();
 
         }
 

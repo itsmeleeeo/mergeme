@@ -65,7 +65,9 @@ app.MapMethods(DeveloperStackGET.Template, DeveloperStackGET.Method, DeveloperSt
 
 //PUT Methods
 app.MapMethods(DeveloperPUT.Template, DeveloperPUT.Method, DeveloperPUT.Handler);
+app.MapMethods(RecruiterPUT.Template, RecruiterPUT.Method, RecruiterPUT.Handler);
 app.MapMethods(StackDeveloperPUT.Template, StackDeveloperPUT.Method, StackDeveloperPUT.Handler);
+app.MapMethods(StackRecruiterPUT.Template, StackRecruiterPUT.Method, StackRecruiterPUT.Handler);
 
 app.UseStaticFiles();
 app.UseRouting();
