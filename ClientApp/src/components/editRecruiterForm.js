@@ -8,9 +8,7 @@ function EditProfile() {
     const userId = user.status;
 
     const [stackData, setStackData] = useState({});
-    const [firstName, setFirstname] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [position, setPosition] = useState('');
+    const [companyName, setCompanyName] = useState('');
     const [stackOne, setStackOne] = useState('');
     const [stackTwo, setStackTwo] = useState('');
     const [stackThree, setStackThree] = useState('');
@@ -21,10 +19,8 @@ function EditProfile() {
         const userName = JSON.parse(name)
 
         for(const item of userName.result) {
-            if(item.type === 'FirstName') {
-                setFirstname(item.value);
-            }else if(item.type === 'LastName') {
-                setLastName(item.value);
+            if(item.type === 'CompanyName') {
+                setCompanyName(item.value);
                 break;
             }
         }
@@ -85,9 +81,7 @@ function EditProfile() {
     const handleSubmit = async () => {
 
         const editUser = {
-            firstName,
-            lastName,
-            position,
+            companyName,
             profileImageUrl,
             userbio
         };
@@ -130,11 +124,7 @@ function EditProfile() {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <label className="form-label">Company Name</label>
-                            <input type="text" className="form-control" value={firstName} readOnly />
-                        </div>
-                        <div>
-                            <label className="form-label">Enter your position</label>
-                            <input type="text" placeholder="eg.Full-Stack Developer" className="form-control" value={position} onChange={(e) => setPosition(e.target.value)} required />
+                            <input type="text" className="form-control" value={companyName} readOnly />
                         </div>
                         <div>
                             <label className="form-label">Select your first option</label>

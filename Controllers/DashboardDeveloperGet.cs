@@ -11,7 +11,7 @@ namespace MergeMe.Controllers
         public static IResult Action(ApplicationDbContext context)
         {
             var recruiter = context.Recruiter.ToList();
-            var response = recruiter.Select(r => new RecruiterResponse {CompanyName = r.FirstName + " " + r.LastName, Id = r.Id, Userbio = r.UserBio, profileImageUrl = r.ProfileImageUrl});
+            var response = recruiter.Select(r => new RecruiterResponse {CompanyName = r.CompanyName, Id = r.Id, Userbio = r.UserBio, profileImageUrl = r.ProfileImageUrl});
 
             return Results.Ok(response);
         }
