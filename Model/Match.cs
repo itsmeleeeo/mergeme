@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public DateTime MatchDate { get; set; }
 
-        private Developer developer { get; set; }
-        private Recruiter recruiter { get; set; }
+        public Developer developer { get; set; }
+        public Recruiter recruiter { get; set; }
     }
 }
