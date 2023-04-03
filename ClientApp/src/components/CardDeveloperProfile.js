@@ -71,7 +71,6 @@ function CardProfile() {
         setLikedUser(likedUser)
         setLike((previousLike) => [...previousLike, currentUser.id])
         console.log(currentUser)
-        console.warn(likedUser)
         handleCardRemove(currentUser.id);
         setCurrentCompanyIndex(currentCompanyIndex + 1)
     }
