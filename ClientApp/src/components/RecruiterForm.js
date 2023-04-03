@@ -9,7 +9,8 @@ function RecruiterForm() {
     const [password, setPassword] = useState('');
     const nav = useNavigate();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const user = {
             firstName,
             lastName,
@@ -27,7 +28,7 @@ function RecruiterForm() {
         }).then((resp) => resp.json())
             .then((user) => {
                 console.log('Success:', user);
-                nav('/')
+                nav('/login')
         }).catch((err) => {
             alert(`Something went wrong ${err}`)
             console.error('Error:', err);

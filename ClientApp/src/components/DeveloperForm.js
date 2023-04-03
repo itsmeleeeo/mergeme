@@ -10,7 +10,8 @@ function DeveloperForm() {
     const [password, setPassword] = useState('');
     const nav = useNavigate();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const user = {
             firstName,
             lastName,
