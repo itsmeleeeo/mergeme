@@ -1,5 +1,4 @@
 {
-  "homepage": "https://itsmeleeeo.github.io/mergeme/",
   "name": "mergeme",
   "version": "0.1.0",
   "private": true,
@@ -51,8 +50,6 @@
     "nth-check": "^3.0.1"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "prestart": "node aspnetcore-https && node aspnetcore-react",
     "start": "rimraf ./build && react-scripts start",
     "build": "react-scripts build",
