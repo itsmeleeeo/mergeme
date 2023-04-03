@@ -11,6 +11,7 @@ function CardProfile() {
     const [recruiterStack, setRecruiterStack] = useState([]);
     const [show, setShow] = useState(false);
     const [currentModalIndex, setCurrentModalIndex] = useState(null);
+    const [likedUser, setLikedUser] = useState([]);
 
     const handleClose = () => {
         setShow(false);
@@ -66,7 +67,8 @@ function CardProfile() {
             }
         }
 
-        user.push(currentUser);
+        likedUser.push(currentUser);
+        setLikedUser(likedUser)
         setLike((previousLike) => [...previousLike, currentUser.id])
         console.log(currentUser)
         handleCardRemove(currentUser.id);
