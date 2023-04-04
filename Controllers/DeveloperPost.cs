@@ -12,10 +12,19 @@ namespace MergeMe.Controllers
         public static string[] Method => new string[] { HttpMethod.Post.ToString() };
         public static Delegate Handler => Action;
 
-        public static IResult Action(DeveloperRequest developerRequest, UserManager<IdentityUser> userManager)
+        public static IResult Action(DeveloperRequest developerRequest, UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
             var developer = new IdentityUser { UserName = developerRequest.email, Email = developerRequest.email};
             var result = userManager.CreateAsync(developer, developerRequest.password).Result;
+            var dev = new Developer(developerRequest.firstName, 
+            developerRequest.lastName, 
+            developerRequest.email, 
+            developerRequest.profileImageUrl, 
+            developerRequest.userBio, 
+            developerRequest.position);
+            
+            context.Developer.Add(dev);
+            context.SaveChanges();
 
             if(!result.Succeeded)
             {
@@ -34,7 +43,6 @@ namespace MergeMe.Controllers
             {
                 return Results.BadRequest(claimResult.Errors.ConvertToProblemToDetails());
             }
-
             return Results.Created($"/developer/{developer.Id}", developer.Id);
         }
     }

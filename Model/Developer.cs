@@ -13,7 +13,7 @@ namespace MergeMe.Model
         public string ProfileImageUrl { get; set; }
         public string UserBio { get; set; }
 
-        public Developer(string firstName, string lastName, string email, string profileImageUrl, string userBio)
+        public Developer(string firstName, string lastName, string email, string profileImageUrl, string userBio, string position)
         {
             var contract = new Contract<Developer>()
                 .IsNotNullOrEmpty(firstName, "FirstName")
@@ -24,6 +24,7 @@ namespace MergeMe.Model
             LastName = lastName;
             Email = email;
             ProfileImageUrl = profileImageUrl;
+            Position = position;
             UserBio = userBio;
         }
 

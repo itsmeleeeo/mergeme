@@ -105,8 +105,10 @@ function EditProfile() {
             body: JSON.stringify(editUser)
         }).then((resp) => resp.json())
             .then((editUser) => {
+                console.warn('deu bom no user')
                 console.log('Success:', editUser);
             }).catch((err) => {
+                console.warn('deu ruim no user')
                 console.error('Error:', err);
             });
 
@@ -117,8 +119,10 @@ function EditProfile() {
             body: JSON.stringify(userStack)
         }).then((resp) => resp.json())
             .then((userStack) => {
+                console.warn('deu bom na stack')
                 console.log('Success:', userStack);
             }).catch((err) => {
+                console.warn('deu ruim na stack')
                 console.error('Error:', err);
         });
     }

@@ -11,10 +11,17 @@ namespace MergeMe.Controllers
         public static string[] Method => new string[] { HttpMethod.Post.ToString() };
         public static Delegate Handler => Action;
 
-        public static IResult Action(RecruiterRequest recruiterRequest, UserManager<IdentityUser> userManager)
+        public static IResult Action(RecruiterRequest recruiterRequest, UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
             var recruiter = new IdentityUser { UserName = recruiterRequest.email, Email = recruiterRequest.email };
             var result = userManager.CreateAsync(recruiter, recruiterRequest.password).Result;
+            var rec = new Recruiter(recruiterRequest.companyName,
+            recruiterRequest.email,
+            recruiterRequest.profileImageUrl,
+            recruiterRequest.userBio);
+
+            context.Recruiter.Add(rec);
+            context.SaveChanges();
 
             if(!result.Succeeded)
             {
