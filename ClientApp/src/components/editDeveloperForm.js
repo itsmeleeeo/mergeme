@@ -4,8 +4,7 @@ import Footer from "./Footer";
 
 function EditProfile() {
     const name = sessionStorage.getItem('name');
-    const user = JSON.parse(name)
-    const userId = user.status;
+    const userId = sessionStorage.getItem('devId');
 
     const [stackData, setStackData] = useState({});
     const [firstName, setFirstname] = useState('');
@@ -15,7 +14,7 @@ function EditProfile() {
     const [stackTwo, setStackTwo] = useState('');
     const [stackThree, setStackThree] = useState('');
     const [userbio, setUserbio] = useState('');
-    const [profileImageUrl, setProfileImageUrl] = useState(''); 
+    const [profileImageUrl, setProfileImageUrl] = useState('');
 
     useEffect(() => {
         const userName = JSON.parse(name)
@@ -108,6 +107,7 @@ function EditProfile() {
                 console.log('Success:', editUser);
             }).catch((err) => {
                 console.error('Error:', err);
+                alert('Account Updated!');
             });
 
         await fetch(`https://localhost:7033/developerstacks/${userId}`, {

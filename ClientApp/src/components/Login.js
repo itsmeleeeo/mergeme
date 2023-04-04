@@ -23,9 +23,22 @@ function Login() {
             .then((user) => {
                 console.log('Success:', user);
                 sessionStorage.setItem('token', JSON.stringify(user.token))
-                sessionStorage.setItem('Id', JSON.stringify(user.user))
+                sessionStorage.setItem('GUID', JSON.stringify(user.user))
                 sessionStorage.setItem('name', JSON.stringify(user.userInfo))
-                navigate('/dashboard/developer')
+                sessionStorage.setItem('devId', JSON.stringify(user.dev))
+                sessionStorage.setItem('recId', JSON.stringify(user.rec))
+
+                const name = sessionStorage.getItem('name');
+                const accType = JSON.parse(name);
+
+                for (const item of accType.result) {
+                    if(item.type === 'FirstName') {
+                        navigate('/dashboard/developer');
+                        break;
+                    } else if (item.type === 'CompanyName'){
+                        navigate('/dashboard/recruiter');
+                    }
+                }
             }).catch((err) => {
                 alert(`username or password may be wrong or not exist`)
                 console.error('Error:', err);

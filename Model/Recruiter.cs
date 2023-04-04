@@ -13,12 +13,11 @@ namespace MergeMe.Model
 
         public List<StackFromRecruiter> stackFromRecruiter { get; set; }
 
-        public Recruiter(int id,string companyName, string email, string profileImageUrl, string userBio)
+        public Recruiter(string companyName, string email, string profileImageUrl, string userBio)
         {
             var contract = new Contract<Recruiter>()
                 .IsNotNullOrEmpty(companyName, "CompanyName");
             AddNotifications(contract);
-            Id = id;
             CompanyName = companyName;
             Email = email;
             ProfileImageUrl = profileImageUrl;

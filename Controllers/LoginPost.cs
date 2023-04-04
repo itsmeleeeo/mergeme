@@ -45,12 +45,28 @@ namespace MergeMe.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Results.Ok(new
+            var dev = context.Developer.FirstOrDefault(d => d.Email == user.Email);
+            var rec = context.Recruiter.FirstOrDefault(r => r.Email == user.Email);
+
+            if(dev != null)
             {
-                token = tokenHandler.WriteToken(token),
-                userInfo = userInfo,
-                user = user.Id
-            });
+                return Results.Ok(new
+                {
+                    token = tokenHandler.WriteToken(token),
+                    userInfo = userInfo,
+                    user = user.Id,
+                    dev = dev.Id
+                });
+            } else
+            {
+                return Results.Ok(new
+                {
+                    token = tokenHandler.WriteToken(token),
+                    userInfo = userInfo,
+                    user = user.Id,
+                    rec = rec.Id
+                });
+            }
         }
     }
 }

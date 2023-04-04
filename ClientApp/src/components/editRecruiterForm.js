@@ -4,8 +4,7 @@ import Footer from "./Footer";
 
 function EditProfile() {
     const name = sessionStorage.getItem('name');
-    const user = JSON.parse(name)
-    const userId = user.status;
+    const userId = sessionStorage.getItem('recId');
 
     const [stackData, setStackData] = useState({});
     const [companyName, setCompanyName] = useState('');
