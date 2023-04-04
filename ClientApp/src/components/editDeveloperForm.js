@@ -4,8 +4,7 @@ import Footer from "./Footer";
 
 function EditProfile() {
     const name = sessionStorage.getItem('name');
-    const user = JSON.parse(name)
-    const userId = user.status;
+    const userId = sessionStorage.getItem('devId');
 
     const [stackData, setStackData] = useState({});
     const [firstName, setFirstname] = useState('');
@@ -15,7 +14,7 @@ function EditProfile() {
     const [stackTwo, setStackTwo] = useState('');
     const [stackThree, setStackThree] = useState('');
     const [userbio, setUserbio] = useState('');
-    const [profileImageUrl, setProfileImageUrl] = useState(''); 
+    const [profileImageUrl, setProfileImageUrl] = useState('');
 
     useEffect(() => {
         const userName = JSON.parse(name)
@@ -105,11 +104,10 @@ function EditProfile() {
             body: JSON.stringify(editUser)
         }).then((resp) => resp.json())
             .then((editUser) => {
-                console.warn('deu bom no user')
                 console.log('Success:', editUser);
             }).catch((err) => {
-                console.warn('deu ruim no user')
                 console.error('Error:', err);
+                alert('Account Updated!');
             });
 
         await fetch(`https://localhost:7033/developerstacks/${userId}`, {
@@ -119,10 +117,8 @@ function EditProfile() {
             body: JSON.stringify(userStack)
         }).then((resp) => resp.json())
             .then((userStack) => {
-                console.warn('deu bom na stack')
                 console.log('Success:', userStack);
             }).catch((err) => {
-                console.warn('deu ruim na stack')
                 console.error('Error:', err);
         });
     }
