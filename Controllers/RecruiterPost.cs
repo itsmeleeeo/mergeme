@@ -15,7 +15,7 @@ namespace MergeMe.Controllers
         {
             var recruiter = new IdentityUser { UserName = recruiterRequest.email, Email = recruiterRequest.email };
             var result = userManager.CreateAsync(recruiter, recruiterRequest.password).Result;
-            var rec = new Recruiter(recruiterRequest.companyName,
+            var rec = new Recruiter(recruiterRequest.firstName,
             recruiterRequest.email,
             recruiterRequest.profileImageUrl,
             recruiterRequest.userBio);

@@ -74,7 +74,9 @@ function RecruiterForm() {
             firstName,
             lastName,
             email,
-            password
+            password,
+            profileImageUrl,
+            userbio,
         };
 
         await fetch('https://localhost:7033/recruiter', {

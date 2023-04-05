@@ -36,6 +36,5 @@ namespace MergeMe.Model
             this.ProfileImageUrl = profileImageUrl;
             this.UserBio = userbio;
         }
-
     }
 }
