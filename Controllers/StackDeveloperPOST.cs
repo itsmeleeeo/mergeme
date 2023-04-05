@@ -16,7 +16,9 @@ namespace MergeMe.Controllers
             var devId = dev.Id;
             var stack = new StackFromDeveloper(stackRequest.stackOne, stackRequest.stackTwo, stackRequest.stackThree, devId);
 
-            /*stack.SettingStack(stackRequest.stackOne, stackRequest.stackTwo, stackRequest.stackThree, devId);*/
+            if(stack == null) {
+                return Results.BadRequest();
+            }
 
             context.DeveloperStack.Add(stack);
             context.SaveChanges();

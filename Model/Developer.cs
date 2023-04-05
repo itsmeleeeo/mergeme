@@ -28,6 +28,8 @@ namespace MergeMe.Model
             UserBio = userBio;
         }
 
+        public Developer() { }
+
         public void EditInfo(string firstName, string lastName, string position, string profileImageUrl, string userbio)
         {
             this.FirstName = firstName;
@@ -36,6 +38,5 @@ namespace MergeMe.Model
             this.ProfileImageUrl = profileImageUrl;
             this.UserBio = userbio;
         }
-
     }
 }
