@@ -30,7 +30,7 @@ function CardProfile() {
         return data;
     }
     
-    const handleRecruitersData = async () => {
+    const handleDevelopersData = async () => {
     const data = await fecthUsers();
     const stackdata = await fetchStacks();
     console.log(data)
@@ -80,7 +80,7 @@ function CardProfile() {
     }
     
     useEffect(() => {
-        handleRecruitersData();
+        handleDevelopersData();
         handleStacks();
     }, [])
 
@@ -94,10 +94,10 @@ function CardProfile() {
                                 <div className="cardHolder">
                                     {
                                         developerInfo.map((developerInfo, i) => {
-                                           return <div className="card mt-30" key={i}>
+                                           return <div className="card mt-30" key={developerInfo.id}>
                                                 <div className="frame">
                                                     <img className="imgCard" src={developerInfo.profileImageUrl} alt="user" />
-                                                    <p className="username">{developerInfo.firstName}</p> 
+                                                    <p className="username">{developerInfo.firstName + " " + developerInfo.lastName}</p> 
                                                     {
                                                         developerStack.slice(i, i + 1).map((developerStack, j) => {
                                                             return <div className="stackInfo" id={j} key={j}>
@@ -113,7 +113,7 @@ function CardProfile() {
                                                     <button className="checkBio" onClick={() => setCurrentModalIndex(i)}>Check Bio</button>
                                                     <Modal show={currentModalIndex === i} onHide={handleClose} >
                                                         <Modal.Header closeButton>
-                                                        <Modal.Title>{developerInfo.firstName}</Modal.Title>
+                                                        <Modal.Title>{developerInfo.firstName + " " + developerInfo.lastName}</Modal.Title>
                                                         </Modal.Header>
                                                         <Modal.Body>{developerInfo.userBio}</Modal.Body>
                                                         <Modal.Footer>

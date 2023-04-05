@@ -16,6 +16,7 @@ namespace MergeMe.Controllers
                 developer = matchRequest.developerId,
                 recruiter = matchRequest.recruiterId
             };
+            context.match.Add(match);
             context.SaveChanges();
 
             return Results.Ok();

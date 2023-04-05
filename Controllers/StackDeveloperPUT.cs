@@ -12,9 +12,9 @@ namespace MergeMe.Controllers
         public static IResult Action([FromRoute] int id, StackRequest stackRequest, ApplicationDbContext context) 
         {
             var developer = context.Developer.FirstOrDefault(d => d.Id == id);
-            var stack = context.DeveloperStack.FirstOrDefault(s => s.Developer.Id == developer.Id);
+            var stack = context.DeveloperStack.FirstOrDefault(s => s.developers.Id == developer.Id);
 
-            var editedStack = stack.Developer.Id;
+            var editedStack = stack.developers.Id;
 
             if(stack == null)
             {
