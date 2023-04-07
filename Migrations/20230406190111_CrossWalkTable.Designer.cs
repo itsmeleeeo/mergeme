@@ -4,6 +4,7 @@ using MergeMe.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MergeMe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230406190111_CrossWalkTable")]
+    partial class CrossWalkTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,17 +119,12 @@ namespace MergeMe.Migrations
                     b.Property<DateTime>("MatchDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("developersId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("recruitersId")
+                    b.Property<int>("developerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("developersId");
-
-                    b.HasIndex("recruitersId");
+                    b.HasIndex("developerId");
 
                     b.ToTable("match");
                 });
@@ -150,6 +147,9 @@ namespace MergeMe.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<int?>("MatchId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ProfileImageUrl")
                         .IsRequired()
                         .HasMaxLength(1000)
@@ -164,6 +164,8 @@ namespace MergeMe.Migrations
                         .HasColumnType("nvarchar(1000)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MatchId");
 
                     b.HasIndex("StacksId");
 
@@ -514,25 +516,21 @@ namespace MergeMe.Migrations
 
             modelBuilder.Entity("MergeMe.Model.Match", b =>
                 {
-                    b.HasOne("MergeMe.Model.Developer", "developers")
+                    b.HasOne("MergeMe.Model.Developer", "developer")
                         .WithMany()
-                        .HasForeignKey("developersId")
+                        .HasForeignKey("developerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MergeMe.Model.Recruiter", "recruiters")
-                        .WithMany()
-                        .HasForeignKey("recruitersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("developers");
-
-                    b.Navigation("recruiters");
+                    b.Navigation("developer");
                 });
 
             modelBuilder.Entity("MergeMe.Model.Recruiter", b =>
                 {
+                    b.HasOne("MergeMe.Model.Match", null)
+                        .WithMany("recruiters")
+                        .HasForeignKey("MatchId");
+
                     b.HasOne("MergeMe.Model.Stacks", null)
                         .WithMany("recruiters")
                         .HasForeignKey("StacksId");
@@ -630,6 +628,11 @@ namespace MergeMe.Migrations
             modelBuilder.Entity("MergeMe.Model.Developer", b =>
                 {
                     b.Navigation("stackFromDevelopers");
+                });
+
+            modelBuilder.Entity("MergeMe.Model.Match", b =>
+                {
+                    b.Navigation("recruiters");
                 });
 
             modelBuilder.Entity("MergeMe.Model.Recruiter", b =>

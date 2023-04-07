@@ -56,6 +56,7 @@ app.MapMethods(DeveloperPost.Template, DeveloperPost.Method, DeveloperPost.Handl
 app.MapMethods(RecruiterPost.Template, RecruiterPost.Method, RecruiterPost.Handler);
 app.MapMethods(LoginPost.Template, LoginPost.Method, LoginPost.Handler);
 app.MapMethods(MatchPOST.Template, MatchPOST.Method, MatchPOST.Handler);
+app.MapMethods(LikeDeveloperPOST.Template, LikeDeveloperPOST.Method, LikeDeveloperPOST.Handler);
 
 //Get Methods
 app.MapMethods(DashboardRecruiterGet.Template, DashboardRecruiterGet.Method, DashboardRecruiterGet.Handler);

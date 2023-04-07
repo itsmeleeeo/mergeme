@@ -1,4 +1,5 @@
 using MergeMe.Model;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MergeMe.Controllers
 {
@@ -13,8 +14,6 @@ namespace MergeMe.Controllers
             var match = new Match {
                 Id = matchRequest.id,
                 MatchDate = matchRequest.matchDate,
-                developer = matchRequest.developerId,
-                recruiter = matchRequest.recruiterId
             };
             context.match.Add(match);
             context.SaveChanges();

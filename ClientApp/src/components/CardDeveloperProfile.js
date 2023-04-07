@@ -68,7 +68,24 @@ function CardProfile() {
 
         user.push(currentUser);
         setLike((previousLike) => [...previousLike, currentUser.id])
+        
+        const likedUsers = currentUser.id;
+        
         console.log(currentUser)
+        console.log(likedUsers)
+
+        await fetch(`https://localhost:7033/developer/like/${likedUsers}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' },
+            body: JSON.stringify(currentUser)
+        }).then((resp) => resp.json())
+            .then((user) => {
+                console.log('Success:', user);
+            }).catch((err) => {
+                console.error('Error:', err);
+            });
+
         handleCardRemove(currentUser.id);
         setCurrentCompanyIndex(currentCompanyIndex + 1)
     }
