@@ -77,8 +77,10 @@ function EditProfile() {
         })
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
+        const recId = userId;
+        const stacksId = 0;
+
         const editRecruiter = {
             companyName,
             profileImageUrl,
@@ -88,7 +90,10 @@ function EditProfile() {
         const userStack = {
             stackOne,
             stackTwo,
-            stackThree
+            stackThree,
+            recId,
+            stacksId
+
         };
 
         await fetch(`https://localhost:7033/recruiter/${userId}`, {

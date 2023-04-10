@@ -9,14 +9,20 @@
         public Recruiter recruiters { get; set; }
         public Stacks stacks { get; set; }
 
-        
+        public StackFromRecruiter(string stackOne, string stackTwo, string stackThree)
+        {
+            this.StackOne = stackOne;
+            this.StackTwo = stackTwo;
+            this.StackThree = stackThree;
+        }
 
-        public void EditStack(string stackOne, string stackTwo, string stackThree, int recruiterId)
+        public void EditStack(string stackOne, string stackTwo, string stackThree, int recruiterId, int stackId)
         {
             this.StackOne = stackOne;
             this.StackTwo = stackTwo;
             this.StackThree = stackThree;
             this.recruiters.Id = recruiterId;
+            this.Id = stackId;
         }
     }
 }

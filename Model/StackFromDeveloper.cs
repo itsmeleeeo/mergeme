@@ -8,6 +8,7 @@
         public string StackThree { get; set; }
         public Developer developers { get; set; }
         public Stacks stacks { get; set; }
+        
         public StackFromDeveloper(string stackOne, string stackTwo, string stackThree)
         {
             this.StackOne = stackOne;
@@ -15,11 +16,12 @@
             this.StackThree = stackThree;
         }
 
-        public void EditStack(string stackOne, string stackTwo, string stackThree, int developerId) {
+        public void EditStack(string stackOne, string stackTwo, string stackThree, int developerId, int stackId) {
             this.StackOne = stackOne;
             this.StackTwo = stackTwo;
             this.StackThree = stackThree;
             this.developers.Id = developerId;
+            this.Id = stackId;
         }
     }
 }

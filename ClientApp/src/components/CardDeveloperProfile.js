@@ -73,8 +73,14 @@ function CardProfile() {
         
         console.log(currentUser)
         console.log(likedUsers)
+        
+        let match = likedUsers % 2;
+        console.log("teste aqui " + match)
+        if(match === 1) {
+            alert("it's a match the recruiter will be contacting you soon!");
+        }
 
-        await fetch(`https://localhost:7033/developer/like/${likedUsers}`, {
+        /*await fetch(`https://localhost:7033/developer/like/${likedUsers}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' },
@@ -84,7 +90,7 @@ function CardProfile() {
                 console.log('Success:', user);
             }).catch((err) => {
                 console.error('Error:', err);
-            });
+            });*/
 
         handleCardRemove(currentUser.id);
         setCurrentCompanyIndex(currentCompanyIndex + 1)

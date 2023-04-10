@@ -15,13 +15,14 @@ namespace MergeMe.Controllers
             var stack = context.DeveloperStack.FirstOrDefault(s => s.developers.Id == developer.Id);
 
             var editedStack = stack.developers.Id;
+            var stackId = stack.Id;
 
             if(stack == null)
             {
                 return Results.BadRequest();
             }
             
-            stack.EditStack(stackRequest.stackOne, stackRequest.stackTwo, stackRequest.stackThree, editedStack);
+            stack.EditStack(stackRequest.stackOne, stackRequest.stackTwo, stackRequest.stackThree, editedStack, stackId);
 
             context.SaveChanges();
 
