@@ -82,6 +82,8 @@ function EditProfile() {
     }
 
     const handleSubmit = async () => {
+        const devId = userId;
+        const stacksId = 0;
 
         const editUser = {
             firstName,
@@ -90,11 +92,12 @@ function EditProfile() {
             profileImageUrl,
             userbio
         };
-
         const userStack = {
             stackOne,
             stackTwo,
-            stackThree
+            stackThree,
+            devId,
+            stacksId
         };
 
         await fetch(`https://localhost:7033/developer/${userId}`, {
@@ -107,7 +110,7 @@ function EditProfile() {
                 console.log('Success:', editUser);
             }).catch((err) => {
                 console.error('Error:', err);
-                alert('Account Updated!');
+                alert('Account Updated! You can go back to Dashboard');
             });
 
         await fetch(`https://localhost:7033/developerstacks/${userId}`, {

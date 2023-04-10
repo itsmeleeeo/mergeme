@@ -25,7 +25,7 @@ function CardProfile() {
     }
 
     const fetchStacks = async () => {
-        const resp = await fetch('https://localhost:7033/developerstack');
+        const resp = await fetch('https://localhost:7033/recruiterstack');
         const data = await resp.json();
         return data;
     }
@@ -68,6 +68,31 @@ function CardProfile() {
 
         user.push(currentUser);
         setLike((previousLike) => [...previousLike, currentUser.id])
+
+        const likedUsers = currentUser.id;
+
+        console.log(currentUser)
+        console.log(likedUsers)
+
+        let match = likedUsers % 2;
+        
+        if (match === 1) {
+            alert(`it's a match! Please send an email to ${currentUser.email} and let them know about the position`);
+        }
+
+        /*await fetch(`https://localhost:7033/recruiter/like/${likedUsers}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(currentUser)
+        }).then((resp) => resp.json())
+            .then((user) => {
+                console.log('Success:', user);
+            }).catch((err) => {
+                console.error('Error:', err);
+            });*/
+
         console.log(currentUser)
         handleCardRemove(currentUser.id);
         setcurrentDeveloperIndex(currentDeveloperIndex + 1)

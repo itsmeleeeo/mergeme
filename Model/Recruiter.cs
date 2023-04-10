@@ -11,6 +11,7 @@ namespace MergeMe.Model
         public string ProfileImageUrl { get; set; }
         public string UserBio { get; set; }
 
+        public List<Developer> developers { get; set; }
         public List<StackFromRecruiter> stackFromRecruiter { get; set; }
 
         public Recruiter(string companyName, string email, string profileImageUrl, string userBio)

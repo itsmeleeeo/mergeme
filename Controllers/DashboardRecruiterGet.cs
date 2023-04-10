@@ -13,6 +13,7 @@ namespace MergeMe.Controllers
         {
             var developer = context.Developer.ToList();
             var response = developer.Select(d => new DeveloperResponse {Id = d.Id, FirstName = d.FirstName, LastName = d.LastName, 
+                Email = d.Email,
                 ProfileImageUrl = d.ProfileImageUrl, 
                 UserBio = d.UserBio, 
                 Position = d.Position  
