@@ -25,7 +25,7 @@ function CardProfile() {
     }
 
     const fetchStacks = async () => {
-        const resp = await fetch('https://localhost:7033/recruiterstack');
+        const resp = await fetch('https://localhost:7033/developerstack');
         const data = await resp.json();
         return data;
     }
@@ -80,18 +80,18 @@ function CardProfile() {
             alert(`it's a match! Please send an email to ${currentUser.email} and let them know about the position`);
         }
 
-        /*await fetch(`https://localhost:7033/recruiter/like/${likedUsers}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(currentUser)
-        }).then((resp) => resp.json())
-            .then((user) => {
-                console.log('Success:', user);
-            }).catch((err) => {
-                console.error('Error:', err);
-            });*/
+        // await fetch(`https://localhost:7033/recruiter/like/${likedUsers}`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(currentUser)
+        // }).then((resp) => resp.json())
+        //     .then((user) => {
+        //         console.log('Success:', user);
+        //     }).catch((err) => {
+        //         console.error('Error:', err);
+        //     });
 
         console.log(currentUser)
         handleCardRemove(currentUser.id);
@@ -122,7 +122,10 @@ function CardProfile() {
                                            return <div className="card mt-30" key={developerInfo.id}>
                                                 <div className="frame">
                                                     <img className="imgCard" src={developerInfo.profileImageUrl} alt="user" />
-                                                    <p className="username">{developerInfo.firstName + " " + developerInfo.lastName}</p> 
+                                                    <p className="username dsp-grid-center">
+                                                        <span className="text-center f-Bold">{developerInfo.firstName + " " + developerInfo.lastName}</span>
+                                                        <span className="text-center">{developerInfo.position}</span>
+                                                    </p> 
                                                     {
                                                         developerStack.slice(i, i + 1).map((developerStack, j) => {
                                                             return <div className="stackInfo" id={j} key={j}>

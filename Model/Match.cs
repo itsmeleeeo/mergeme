@@ -9,6 +9,10 @@
         public int recruitersId { get; set; }
         public Recruiter recruiters { get; set; }
 
+        public Match()
+        {
+        }
+
         public void GetMatch(int recId, int devId)
         {
             MatchDate = DateTime.Now;

@@ -80,17 +80,17 @@ function CardProfile() {
             alert("it's a match the recruiter will be contacting you soon!");
         }
 
-        /*await fetch(`https://localhost:7033/developer/like/${likedUsers}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json' },
-            body: JSON.stringify(currentUser)
-        }).then((resp) => resp.json())
-            .then((user) => {
-                console.log('Success:', user);
-            }).catch((err) => {
-                console.error('Error:', err);
-            });*/
+        // await fetch(`https://localhost:7033/developer/like/${likedUsers}`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json' },
+        //     body: JSON.stringify(currentUser)
+        // }).then((resp) => resp.json())
+        //     .then((user) => {
+        //         console.log('Success:', user);
+        //     }).catch((err) => {
+        //         console.error('Error:', err);
+        //     });
 
         handleCardRemove(currentUser.id);
         setCurrentCompanyIndex(currentCompanyIndex + 1)
