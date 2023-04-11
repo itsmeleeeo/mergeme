@@ -190,6 +190,10 @@ h1, h2, h3, h4, h5, h6, p, span, label, li {
     padding-left: 15px;
 }
 
+.f-Bold {
+    font-weight: bold;
+}
+
 /*Navbar*/
 
 .btnLogin {
