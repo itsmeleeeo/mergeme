@@ -10,6 +10,8 @@ function DeveloperForm() {
     const [position, setPosition] = useState('');
     const [stackData, setStackData] = useState({});
     const [stackOne, setStackOne] = useState('');
+    const [stackTwo, setStackTwo] = useState('');
+    const [stackThree, setStackThree] = useState('');
     const [userbio, setUserbio] = useState('');
     const [profileImageUrl, setProfileImageUrl] = useState(''); 
     const [password, setPassword] = useState('');
@@ -72,6 +74,7 @@ function DeveloperForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const devId = 0;
         const user = {
             firstName,
             lastName,
@@ -80,6 +83,13 @@ function DeveloperForm() {
             profileImageUrl,
             userbio,
             position
+        };
+
+        const userStack = {
+            stackOne,
+            stackTwo,
+            stackThree,
+            devId
         };
 
         await fetch('https://localhost:7033/developer', {
@@ -94,6 +104,18 @@ function DeveloperForm() {
                 nav('/login')
             }).catch((err) => {
                 console.error('Error:', err);
+            });
+
+            await fetch(`https://localhost:7033/developerstack`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' },
+                body: JSON.stringify(userStack)
+            }).then((resp) => resp.json())
+                .then((userStack) => {
+                    console.log('Success:', userStack);
+                }).catch((err) => {
+                    console.error('Error:', err);
             });
     }
 
@@ -132,6 +154,22 @@ function DeveloperForm() {
                                 <label className="form-label">choose a language</label>
                                 <div id="emailHelp" className="form-text">Choose the first language in which you are most proficient and it will be your profile picture</div>
                                 <select onChange={(e) => setStackOne(e.target.value)} className="form-select stackOneSelected" aria-label="Default select example">
+                                    {stackData && stackData.length > 0 && stackData.map((stack, i) => (
+                                        <option key={i} value={stack.stackName}>{stack.stackName}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="form-label">Select your second option</label>
+                                <select onChange={(e) => setStackTwo(e.target.value)} className="form-select" aria-label="Default select example">
+                                    {stackData && stackData.length > 0 && stackData.map((stack, i) => (
+                                        <option key={i} value={stack.stackName}>{stack.stackName}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="form-label">Select your third option</label>
+                                <select onChange={(e) => setStackThree(e.target.value)} className="form-select" aria-label="Default select example">
                                     {stackData && stackData.length > 0 && stackData.map((stack, i) => (
                                         <option key={i} value={stack.stackName}>{stack.stackName}</option>
                                     ))}

@@ -7,22 +7,18 @@
         public string StackTwo { get; set; }
         public string StackThree { get; set; }
         public Recruiter recruiters { get; set; }
-        public Stacks stacks { get; set; }
+        public int recruitersId { get; set; }
 
-        public StackFromRecruiter(string stackOne, string stackTwo, string stackThree)
+        public StackFromRecruiter()
         {
-            this.StackOne = stackOne;
-            this.StackTwo = stackTwo;
-            this.StackThree = stackThree;
         }
 
-        public void EditStack(string stackOne, string stackTwo, string stackThree, int recruiterId, int stackId)
+        public void EditStack(string stackOne, string stackTwo, string stackThree, int recruitersId)
         {
             this.StackOne = stackOne;
             this.StackTwo = stackTwo;
             this.StackThree = stackThree;
-            this.recruiters.Id = recruiterId;
-            this.Id = stackId;
+            this.recruitersId = recruitersId;
         }
     }
 }
