@@ -83,7 +83,6 @@ function EditProfile() {
 
     const handleSubmit = async () => {
         const devId = userId;
-        const stacksId = 0;
 
         const editUser = {
             firstName,
@@ -96,8 +95,7 @@ function EditProfile() {
             stackOne,
             stackTwo,
             stackThree,
-            devId,
-            stacksId
+            devId
         };
 
         await fetch(`https://localhost:7033/developer/${userId}`, {

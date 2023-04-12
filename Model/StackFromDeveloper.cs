@@ -7,21 +7,17 @@
         public string StackTwo { get; set; }
         public string StackThree { get; set; }
         public Developer developers { get; set; }
-        public Stacks stacks { get; set; }
+        public int developersId { get; set; }
         
-        public StackFromDeveloper(string stackOne, string stackTwo, string stackThree)
+        public StackFromDeveloper()
         {
-            this.StackOne = stackOne;
-            this.StackTwo = stackTwo;
-            this.StackThree = stackThree;
         }
 
-        public void EditStack(string stackOne, string stackTwo, string stackThree, int developerId, int stackId) {
+        public void EditStack(string stackOne, string stackTwo, string stackThree, int developersId) {
             this.StackOne = stackOne;
             this.StackTwo = stackTwo;
             this.StackThree = stackThree;
-            this.developers.Id = developerId;
-            this.Id = stackId;
+            this.developersId = developersId;
         }
     }
 }
