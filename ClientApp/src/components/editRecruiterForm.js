@@ -106,6 +106,7 @@ function EditProfile() {
                 console.log('Success:', editRecruiter);
             }).catch((err) => {
                 console.error('Error:', err);
+                alert('Account Updated! You can go back to Dashboard');
             });
 
         await fetch(`https://localhost:7033/recruiterstacks/${userId}`, {
